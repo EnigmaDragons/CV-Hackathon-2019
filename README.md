@@ -65,7 +65,7 @@ Preparation:
 ----
 
 - SilasReinagel: Project Manager / Director
-- Alec Ruderman: Programming
+- Alec Ruderman: Programming - checking in
 - Jesse Newman: Game Design / Programming
 - Gene Dodge: Art Lead
 - Anuj Agrawal: TBD
