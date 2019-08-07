@@ -47,6 +47,7 @@ MonoBehaviour:
   timeBetweenMovement: 0.05
   Hauler: {fileID: 0}
   Lanes: {fileID: 5886147957378024864, guid: e8927b3ae83f944829580b398d012704, type: 3}
+  Cars: {fileID: 0}
 --- !u!1 &7487925579974080040
 GameObject:
   m_ObjectHideFlags: 0
