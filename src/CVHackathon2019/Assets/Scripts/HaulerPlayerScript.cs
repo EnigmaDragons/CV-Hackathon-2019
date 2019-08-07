@@ -14,7 +14,7 @@ public class HaulerPlayerScript : MonoBehaviour
 	
 	// start in middle lane (0,1,2)
 	private int currentLane = 1;
-	private GameObject[] Cars;
+	public GameObject Cars;
 
 	void StartGame()
 	{
@@ -27,8 +27,9 @@ public class HaulerPlayerScript : MonoBehaviour
 
 	private void SpawnCar()
 	{
-		var carPrototype = Cars[0];
-		Instantiate(carPrototype, new Vector3(100, 400, 0), Quaternion.identity);
+		var carPrototype = Cars;
+		GameObject car = Instantiate(carPrototype, transform.position, Quaternion.identity) as GameObject;
+		car.GetComponent<Rigidbody>().AddForce(-transform.right*100);
 	}
 
 	private void UpButton()
@@ -37,10 +38,8 @@ public class HaulerPlayerScript : MonoBehaviour
 		if (currentLane > 0)
 		{
 			currentLane -= 1;
-			this.transform.position = LanePositions[currentLane].position;
 		}
-
-		Debug.Log("Lane = " + currentLane);
+		UpdatePosition();
 	}
 
 	private void DownButton()
@@ -49,15 +48,20 @@ public class HaulerPlayerScript : MonoBehaviour
 		if (currentLane < 2)
 		{
 			currentLane += 1;
-			this.transform.position = LanePositions[currentLane].position;
 		}
+		UpdatePosition();
 
-		Debug.Log("Lane = " + currentLane);
 	}
 
+	private void UpdatePosition()
+	{
+		transform.position = new Vector3(transform.position.x, LanePositions[currentLane].position.y, 0);
+		Debug.Log("Lane = " + currentLane);
+	}
+	
 	private void ActionButton()
 	{
-		//SpawnCar();
+		SpawnCar();
 		// shoot car down lane
 
 		Debug.Log("Spawn a car!");
@@ -85,7 +89,7 @@ public class HaulerPlayerScript : MonoBehaviour
 			else if (Input.GetButton("Jump"))
 			{
 				ActionButton();
-				yield return new WaitForSeconds(timeBetweenMovement);
+				yield return new WaitForSeconds(timeBetweenMovement*10);
 			}
 
 			else 
