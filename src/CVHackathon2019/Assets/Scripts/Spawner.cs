@@ -6,6 +6,7 @@ using Assets.Scripts;
 public class Spawner : MonoBehaviour
 {
     public float SpawnIntervalSeconds = 1.5f;
+    public int SpawnVariance = 4;
     public bool IsGameOver => GameState.Current.IsGameOver;
     public GameObject[] Customers;
     public GameObject Lanes;
@@ -21,7 +22,8 @@ public class Spawner : MonoBehaviour
     {
         while(!IsGameOver)
         {
-            yield return new WaitForSeconds(SpawnIntervalSeconds);
+            var untilNext = SpawnIntervalSeconds + (Rng.Int(-SpawnVariance, SpawnVariance) * 0.1f);
+            yield return new WaitForSeconds(untilNext);
             SpawnCustomer();
         }
     }

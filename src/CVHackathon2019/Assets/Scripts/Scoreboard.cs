@@ -1,13 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public GUIText scoreText;
-private int score;
-
-public class OnLevelComplete : MonoBehaviour
+public class Scoreboard : MonoBehaviour
 {
-
+	public GUIText scoreText;
+	private int score;
+	
 	void Start ()
 	{
 	    score = 0;
