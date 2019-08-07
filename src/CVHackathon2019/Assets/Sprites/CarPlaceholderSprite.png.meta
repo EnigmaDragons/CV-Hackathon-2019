@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3bb4b15af45f9264197173345d8cdca1
+guid: fa10e78477ac94cd69f257fba87fefba
 TextureImporter:
   internalIDToNameTable:
   - first:
       213: -6123279196071458950
-    second: HaulerPlaceholder_0
+    second: DriverWindowSprite
   - first:
       213: 5526446720736270680
     second: HaulerPlaceholder_1
@@ -46,12 +46,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 1
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -66,6 +66,18 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -101,15 +113,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HaulerPlaceholder_0
+      name: DriverWindowSprite
       rect:
         serializedVersion: 2
-        x: 191
-        y: 981
-        width: 203
-        height: 122
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 436
+        y: 778
+        width: 295
+        height: 231
+      alignment: 9
+      pivot: {x: 0.5000002, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -130,7 +142,7 @@ TextureImporter:
         width: 2416
         height: 812
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
