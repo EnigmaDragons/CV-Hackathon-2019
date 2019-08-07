@@ -1,12 +1,15 @@
 using UnityEngine;
+using TMPro;
 
 public class Scoreboard : MonoBehaviour
 {
-	public GUIText scoreText;
+
+	public TextMeshProUGUI scoreText;
 	private int score;
-	
+
 	void Start ()
 	{
+		scoreText = GetComponent<TextMeshProUGUI>();
 	    score = 0;
 	    UpdateScore ();
 	}
