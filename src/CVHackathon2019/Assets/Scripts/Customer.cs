@@ -7,6 +7,7 @@ public class Customer : MonoBehaviour
     public int MaxSpeed = 30;
     public int HundrethsYVariance = 80;
     
+    public int CustomerReturnRate = 8;
     void Start()
     {
         var pos = gameObject.transform.position;
@@ -26,6 +27,12 @@ public class Customer : MonoBehaviour
         const int carLayer = 8;
         if (other.layer == carLayer)
             OnCarCollide(other);
+    }
+
+    private bool CustomerReturnsCar()
+    {
+        var chance = Rng.Int(1, 100);
+        return (CustomerReturnRate <= chance);
     }
 
     private void OnCarCollide(GameObject other)
