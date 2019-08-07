@@ -454,6 +454,16 @@ PrefabInstance:
       propertyPath: AudioClip
       value: 
       objectReference: {fileID: 8300000, guid: 0e6589d90e1112f42821afa8a9fb6e5f, type: 3}
+    - target: {fileID: 4466301982513214005, guid: 2fa7d2efed50044cb994d7c54e963c36,
+        type: 3}
+      propertyPath: CarLaunched
+      value: 
+      objectReference: {fileID: 8300000, guid: 0e6589d90e1112f42821afa8a9fb6e5f, type: 3}
+    - target: {fileID: 4466301982513214005, guid: 2fa7d2efed50044cb994d7c54e963c36,
+        type: 3}
+      propertyPath: HaulerMoved
+      value: 
+      objectReference: {fileID: 8300000, guid: 284141a50be209b4bb0247db329c118c, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fa7d2efed50044cb994d7c54e963c36, type: 3}
 --- !u!4 &205487029 stripped
