@@ -14,7 +14,7 @@ public class HaulerPlayerScript : MonoBehaviour
 	
 	// start in middle lane (0,1,2)
 	private int currentLane = 1;
-	private GameObject[] Cars;
+	public GameObject Cars;
 
 	void StartGame()
 	{
@@ -27,8 +27,8 @@ public class HaulerPlayerScript : MonoBehaviour
 
 	private void SpawnCar()
 	{
-		var carPrototype = Cars[0];
-		Instantiate(carPrototype, new Vector3(100, 400, 0), Quaternion.identity);
+		var carPrototype = Cars;
+		Instantiate(carPrototype, new Vector3(-3, 0, 0), Quaternion.identity);
 	}
 
 	private void UpButton()
@@ -57,7 +57,7 @@ public class HaulerPlayerScript : MonoBehaviour
 
 	private void ActionButton()
 	{
-		//SpawnCar();
+		SpawnCar();
 		// shoot car down lane
 
 		Debug.Log("Spawn a car!");
@@ -85,7 +85,7 @@ public class HaulerPlayerScript : MonoBehaviour
 			else if (Input.GetButton("Jump"))
 			{
 				ActionButton();
-				yield return new WaitForSeconds(timeBetweenMovement);
+				yield return new WaitForSeconds(timeBetweenMovement*3);
 			}
 
 			else 
