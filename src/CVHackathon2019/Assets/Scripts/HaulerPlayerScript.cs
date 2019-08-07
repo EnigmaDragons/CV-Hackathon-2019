@@ -6,8 +6,10 @@ using System.Linq;
 public class HaulerPlayerScript : MonoBehaviour
 {
 
-	public float timeBetweenMovement = 0.10f;
+	public float timeBetweenHaulerMovement = 0.10f;
 	public GameObject Hauler;
+
+	public float timeBetweenCarDeployment = 1.00f;
 
 	public GameObject Lanes;
 	private Transform[] LanePositions => Lanes.transform.OfType<Transform>().Select(x => x).ToArray();
@@ -16,6 +18,7 @@ public class HaulerPlayerScript : MonoBehaviour
 	private int currentLane = 1;
 
 	public GameObject Cars;
+	public int carSpeedForceMultiplier = 137;
 
 	// audio
     public AudioSource AudioSource;
@@ -35,7 +38,7 @@ public class HaulerPlayerScript : MonoBehaviour
 	{
 		var carPrototype = Cars;
 		GameObject car = Instantiate(carPrototype, transform.position, Quaternion.identity) as GameObject;
-		car.GetComponent<Rigidbody2D>().AddForce(-transform.right*137);
+		car.GetComponent<Rigidbody2D>().AddForce(-transform.right*carSpeedForceMultiplier);
 
         AudioSource.PlayOneShot(CarLaunched);
 	}
@@ -86,26 +89,26 @@ public class HaulerPlayerScript : MonoBehaviour
 			if (Input.GetAxis("Vertical") > 0)
 			{
 				UpButton();
-				yield return new WaitForSeconds(timeBetweenMovement);
+				yield return new WaitForSeconds(timeBetweenHaulerMovement);
 			}
 
 			// Down arrow button action
 			else if (Input.GetAxis("Vertical") < 0)
 			{
 				DownButton();
-				yield return new WaitForSeconds(timeBetweenMovement);
+				yield return new WaitForSeconds(timeBetweenHaulerMovement);
 			}
 
 			// Spacebar action
 			else if (Input.GetButton("Jump"))
 			{
 				ActionButton();
-				yield return new WaitForSeconds(timeBetweenMovement*10);
+				yield return new WaitForSeconds(timeBetweenCarDeployment);
 			}
 
 			else 
 			{
-				yield return new WaitForSeconds(timeBetweenMovement);
+				yield return new WaitForSeconds(timeBetweenHaulerMovement);
 			}
 
 		}
