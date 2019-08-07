@@ -32,11 +32,19 @@ public class Customer : MonoBehaviour
     private bool CustomerReturnsCar()
     {
         var chance = Rng.Int(1, 100);
-        return (CustomerReturnRate <= chance);
+        Debug.Log("chance = " + chance);
+        return (chance <= CustomerReturnRate);
     }
 
     private void OnCarCollide(GameObject other)
     {
+        if (CustomerReturnsCar())
+        {
+            var car = other.GetComponent<Rigidbody2D>();
+            car.AddForce(transform.right * 2 * 137);
+            return;
+        }
+
         GameState.Current.OnCustomerServed();
         Destroy(gameObject);
         Destroy(other);
