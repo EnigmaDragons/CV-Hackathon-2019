@@ -36,6 +36,7 @@ public class HaulerPlayerScript : MonoBehaviour
 		var carPrototype = Cars;
 		GameObject car = Instantiate(carPrototype, transform.position, Quaternion.identity) as GameObject;
 		car.GetComponent<Rigidbody2D>().AddForce(-transform.right*100);
+
         AudioSource.PlayOneShot(CarLaunched);
 	}
 
@@ -63,6 +64,7 @@ public class HaulerPlayerScript : MonoBehaviour
 	private void UpdatePosition()
 	{
 		transform.position = new Vector3(transform.position.x, LanePositions[currentLane].position.y, 0);
+        
         AudioSource.PlayOneShot(HaulerMoved);
         Debug.Log("Lane = " + currentLane);
 	}
