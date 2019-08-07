@@ -25,9 +25,4 @@ public class MusicHandler : MonoBehaviour
             source.Play();
         }
     }
-        
-    public void AdjustMusicVolume(Slider slider)
-    {
-        source.volume = slider.value;
-    }
 }
