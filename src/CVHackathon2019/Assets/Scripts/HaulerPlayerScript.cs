@@ -15,7 +15,7 @@ public class HaulerPlayerScript : MonoBehaviour
 	// start in middle lane (0,1,2)
 	private int currentLane = 1;
 	public GameObject Cars;
-	
+
 	void StartGame()
 	{
 		// init game world
@@ -29,7 +29,7 @@ public class HaulerPlayerScript : MonoBehaviour
 	{
 		var carPrototype = Cars;
 		GameObject car = Instantiate(carPrototype, transform.position, Quaternion.identity) as GameObject;
-		car.GetComponent<Rigidbody>().AddForce(-transform.right*100);
+		car.GetComponent<Rigidbody2D>().AddForce(-transform.right*100);
 	}
 
 	private void UpButton()
