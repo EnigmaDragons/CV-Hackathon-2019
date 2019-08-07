@@ -1,5 +1,4 @@
-﻿using Assets.Scripts;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GameOver : MonoBehaviour
 {
@@ -11,6 +10,6 @@ public class GameOver : MonoBehaviour
     private void SetGameOver()
     {
         Debug.Log("Game Over");
-        GameState.Current.IsGameOver = true;
+        GameState.Current.Outcome = LevelOutcome.GameOver;
     }
 }
