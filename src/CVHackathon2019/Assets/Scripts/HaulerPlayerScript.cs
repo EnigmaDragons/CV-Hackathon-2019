@@ -34,6 +34,8 @@ public class HaulerPlayerScript : MonoBehaviour
 		{
 			currentLane -= 1;
 		}
+
+		Debug.Log(currentLane);
 	}
 
 	private void DownButton()
@@ -43,31 +45,35 @@ public class HaulerPlayerScript : MonoBehaviour
 		{
 			currentLane += 1;
 		}
+
+		Debug.Log(currentLane);
 	}
 
 	private void ActionButton()
 	{
 		SpawnCar();
 		// shoot car down lane
+
+		Debug.Log("Spawn a car!");
 	}
 
 	private void RunGame()
 	{
 
 		// Up arrow button action
-		if (Input.GetButton("Up"))
+		if (Input.GetAxis("Vertical") > 0)
 		{
 			UpButton();
 		}
 
 		// Down arrow button action
-		if (Input.GetButton("Down"))
+		if (Input.GetAxis("Vertical") < 0)
 		{
 			DownButton();
 		}
 
 		// Spacebar action
-		if (Input.GetButton("Space"))
+		if (Input.GetButton("Fire1"))
 		{
 			ActionButton();
 		}
