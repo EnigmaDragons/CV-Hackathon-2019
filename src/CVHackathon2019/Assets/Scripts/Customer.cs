@@ -4,8 +4,8 @@ using Assets.Scripts;
 public class Customer : MonoBehaviour
 {
     public float[] Speeds = { 10f, 10f, 10f, 10f,  8f, 6f, 4f, 12f, 14f, 16f};
+    public int CustomerReturnRate = 8;
 
-    
     void Start()
     {
         GetComponent<Rigidbody2D>().AddForce(new Vector2(Speeds.Random(), 0));
@@ -21,6 +21,12 @@ public class Customer : MonoBehaviour
         const int carLayer = 8;
         if (other.layer == carLayer)
             OnCarCollide(other);
+    }
+
+    private bool CustomerReturnsCar()
+    {
+        var chance = Rng.Int(1, 100);
+        return (CustomerReturnRate <= chance);
     }
 
     private void OnCarCollide(GameObject other)
