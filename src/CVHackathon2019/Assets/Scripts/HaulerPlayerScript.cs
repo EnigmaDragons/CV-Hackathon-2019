@@ -15,7 +15,7 @@ public class HaulerPlayerScript : MonoBehaviour
 	// start in middle lane (0,1,2)
 	private int currentLane = 1;
 	public GameObject Cars;
-
+	
 	void StartGame()
 	{
 		// init game world
