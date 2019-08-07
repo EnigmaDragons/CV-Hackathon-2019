@@ -4,7 +4,6 @@ using Assets.Scripts;
 public class Customer : MonoBehaviour
 {
     public float[] Speeds = { 10f, 10f, 10f, 10f,  8f, 6f, 4f, 12f, 14f, 16f};
-
     
     void Start()
     {
