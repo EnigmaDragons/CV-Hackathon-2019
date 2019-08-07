@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using UnityEngine;
+using Assets.Scripts;
 
 public class Spawner : MonoBehaviour
 {
     public float SpawnIntervalSeconds = 1.5f;
     public bool IsGameOver = false;
     public GameObject[] Customers;
+    public GameObject[] Lanes;
     
+
     void Start()
     {
         StartCoroutine(Countdown());
@@ -24,6 +27,6 @@ public class Spawner : MonoBehaviour
     private void SpawnCustomer()
     {
         var customerPrototype = Customers[0];
-        Instantiate(customerPrototype, new Vector3(100, 400, 0), Quaternion.identity);
+        Instantiate(customerPrototype, Lanes.Random<GameObject>().transform.position, Quaternion.identity);
     }
 }
