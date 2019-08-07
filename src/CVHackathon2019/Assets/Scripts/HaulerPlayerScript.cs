@@ -28,7 +28,8 @@ public class HaulerPlayerScript : MonoBehaviour
 	private void SpawnCar()
 	{
 		var carPrototype = Cars;
-		Instantiate(carPrototype, new Vector3(-3, 0, 0), Quaternion.identity);
+		GameObject car = Instantiate(carPrototype, transform.position, Quaternion.identity) as GameObject;
+		car.GetComponent<Rigidbody>().AddForce(-transform.right*100);
 	}
 
 	private void UpButton()
@@ -88,7 +89,7 @@ public class HaulerPlayerScript : MonoBehaviour
 			else if (Input.GetButton("Jump"))
 			{
 				ActionButton();
-				yield return new WaitForSeconds(timeBetweenMovement*3);
+				yield return new WaitForSeconds(timeBetweenMovement*10);
 			}
 
 			else 
