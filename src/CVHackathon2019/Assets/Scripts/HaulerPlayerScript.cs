@@ -14,19 +14,22 @@ public class HaulerPlayerScript : MonoBehaviour
 	
 	// start in middle lane (0,1,2)
 	private int currentLane = 1;
+
 	public GameObject Cars;
+
+	// audio
     public AudioSource AudioSource;
     public AudioClip CarLaunched;
     public AudioClip HaulerMoved;
 
-	void StartGame()
-	{
-		// init game world
-		// init hauler player
-		// init controller
+	// void StartGame()
+	// {
+	// 	// init game world
+	// 	// init hauler player
+	// 	// init controller
 
-		currentLane = 1;	
-	}
+	// 	currentLane = 1;	
+	// }
 
 	private void SpawnCar()
 	{
@@ -66,6 +69,7 @@ public class HaulerPlayerScript : MonoBehaviour
 	
 	private void ActionButton()
 	{
+		// space bar action
 		SpawnCar();
 		// shoot car down lane
 

@@ -1,6 +1,7 @@
 using UnityEngine;
+using UnityEngine.UI;
 
-public class ChangeMusic : MonoBehaviour
+public class MusicHandler : MonoBehaviour
 {
     public AudioClip menuMusic;
     public AudioClip Level1Music;
@@ -23,5 +24,10 @@ public class ChangeMusic : MonoBehaviour
             source.clip = Level1Music;
             source.Play();
         }
+    }
+        
+    public void AdjustMusicVolume(Slider slider)
+    {
+        source.volume = slider.value;
     }
 }
