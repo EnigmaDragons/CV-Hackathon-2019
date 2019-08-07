@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7180770231752676297}
   - component: {fileID: 2425258914100422359}
   - component: {fileID: 2697855930670282192}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GameOverLine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,4 +92,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28d361362189b39489bdd3338465eb95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsGameOver: 0
