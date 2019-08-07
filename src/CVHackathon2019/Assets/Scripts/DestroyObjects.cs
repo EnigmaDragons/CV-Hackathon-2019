@@ -7,10 +7,8 @@ public class DestroyObjects : MonoBehaviour
     private void OnTriggerEnter(Collider other) => DestroyObject(other.gameObject);
     private void OnTriggerEnter2D(Collider2D other) => DestroyObject(other.gameObject);
 
-    private void DestroyObject(GameObject gobj)
+    private void DestroyObject(GameObject gameObj)
     {
-    	Destroy(gobj);
-        // Debug.Log("Game Over");
-        // GameState.Current.Outcome = LevelOutcome.GameOver;
+    	Destroy(gameObj);
     }
 }
