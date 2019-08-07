@@ -5,113 +5,112 @@ using System.Linq;
 
 public class HaulerPlayerScript : MonoBehaviour
 {
+    public float inputDelaySeconds = 0.025f;
+    public float secondsBetweenMovement = 0.5f;
+    public float secondsBetweenLaunching = 1.0f;
+    public GameObject Hauler;
 
-	public float timeBetweenMovement = 0.10f;
-	public GameObject Hauler;
+    public GameObject Lanes;
+    private Transform[] LanePositions => Lanes.transform.OfType<Transform>().Select(x => x).ToArray();
 
-	public GameObject Lanes;
-	private Transform[] LanePositions => Lanes.transform.OfType<Transform>().Select(x => x).ToArray();
-	
-	// start in middle lane (0,1,2)
-	private int currentLane = 1;
+    // start in middle lane (0,1,2)
+    private int currentLane = 1;
 
-	public GameObject Cars;
+    public GameObject Cars;
+    
+    // Input tracking
+    private float _timer;
+    private float _lastMovementTime;
+    private float _lastLaunchTime;
 
-	// audio
+    // audio
     public AudioSource AudioSource;
     public AudioClip CarLaunched;
     public AudioClip HaulerMoved;
 
-	// void StartGame()
-	// {
-	// 	// init game world
-	// 	// init hauler player
-	// 	// init controller
+    // void StartGame()
+    // {
+    // 	// init game world
+    // 	// init hauler player
+    // 	// init controller
 
-	// 	currentLane = 1;	
-	// }
+    // 	currentLane = 1;	
+    // }
 
-	private void SpawnCar()
-	{
-		var carPrototype = Cars;
-		GameObject car = Instantiate(carPrototype, transform.position, Quaternion.identity) as GameObject;
-		car.GetComponent<Rigidbody2D>().AddForce(-transform.right*137);
+    private void SpawnCar()
+    {
+        var carPrototype = Cars;
+        GameObject car = Instantiate(carPrototype, transform.position, Quaternion.identity) as GameObject;
+        car.GetComponent<Rigidbody2D>().AddForce(-transform.right * 137);
 
         AudioSource.PlayOneShot(CarLaunched);
-	}
+    }
 
-	private void UpButton()
-	{
-		// Up arrow button action
-		if (currentLane > 0)
-		{
-			currentLane -= 1;
-		}
-		UpdatePosition();
-	}
+    private void MoveUp()
+    {
+        // Up arrow button action
+        if (currentLane > 0)
+            currentLane -= 1;
 
-	private void DownButton()
-	{
-		// Down arrow button action
-		if (currentLane < 2)
-		{
-			currentLane += 1;
-		}
-		UpdatePosition();
+        UpdatePosition();
+    }
 
-	}
+    private void MoveDown()
+    {
+        // Down arrow button action
+        if (currentLane < 2)
+            currentLane += 1;
 
-	private void UpdatePosition()
-	{
-		transform.position = new Vector3(transform.position.x, LanePositions[currentLane].position.y, 0);
-        
+        UpdatePosition();
+    }
+
+    private void UpdatePosition()
+    {
+        transform.position = new Vector3(transform.position.x, LanePositions[currentLane].position.y, 0);
+
         AudioSource.PlayOneShot(HaulerMoved);
         Debug.Log("Lane = " + currentLane);
-	}
-	
-	private void ActionButton()
-	{
-		// space bar action
-		SpawnCar();
-		// shoot car down lane
+    }
 
-		Debug.Log("Spawn a car!");
-	}
+    private void LaunchCar()
+    {
+        SpawnCar();
+        Debug.Log("Spawn a car!");
+    }
 
-	private IEnumerator RunGame()
-	{
-		while(true) {
+    private IEnumerator RunGame()
+    {
+        while (true)
+        {
+            if (Input.GetAxis("Vertical") > 0 && CanMove())
+            {
+                MoveUp();
+                _lastMovementTime = _timer;
+            }
+            else if (Input.GetAxis("Vertical") < 0 && CanMove())
+            {
+                MoveDown();
+                _lastMovementTime = _timer;
+            }
+            else if (Input.GetButton("Jump") && CanLaunch())
+            {
+                LaunchCar();
+                _lastLaunchTime = _timer;
+            }
+            
+            yield return new WaitForSeconds(inputDelaySeconds);
+        }
+    }
 
-			// Up arrow button action
-			if (Input.GetAxis("Vertical") > 0)
-			{
-				UpButton();
-				yield return new WaitForSeconds(timeBetweenMovement);
-			}
+    private bool CanLaunch()
+    {
+        return _timer - _lastLaunchTime >= secondsBetweenLaunching;
+    }
 
-			// Down arrow button action
-			else if (Input.GetAxis("Vertical") < 0)
-			{
-				DownButton();
-				yield return new WaitForSeconds(timeBetweenMovement);
-			}
-
-			// Spacebar action
-			else if (Input.GetButton("Jump"))
-			{
-				ActionButton();
-				yield return new WaitForSeconds(timeBetweenMovement*10);
-			}
-
-			else 
-			{
-				yield return new WaitForSeconds(timeBetweenMovement);
-			}
-
-		}
-
-	}
-
+    private bool CanMove()
+    {
+        return _timer - _lastMovementTime >= secondsBetweenMovement;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -120,8 +119,8 @@ public class HaulerPlayerScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    // void Update()
-    // {
-    //     RunGame();
-    // }
+    void Update()
+    {
+        _timer += Time.deltaTime;
+    }
 }
