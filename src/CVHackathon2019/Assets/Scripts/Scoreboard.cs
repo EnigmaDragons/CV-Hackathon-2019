@@ -1,15 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
-public GUIText scoreText;
-private int score;
-
-public class OnLevelComplete : MonoBehaviour
+public class Scoreboard : MonoBehaviour
 {
+
+	public TextMeshProUGUI scoreText;
+	private int score;
 
 	void Start ()
 	{
+		scoreText = GetComponent<TextMeshProUGUI>();
 	    score = 0;
 	    UpdateScore ();
 	}
