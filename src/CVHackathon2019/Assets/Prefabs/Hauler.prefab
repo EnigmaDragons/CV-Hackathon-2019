@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6149121835246103706}
   - component: {fileID: 2413897966614795569}
+  - component: {fileID: 3955267391439128016}
   m_Layer: 0
   m_Name: haulerForeground
   m_TagString: Untagged
@@ -69,7 +70,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: db7cd8df42a3ba2499543f7f9b27f7fc, type: 3}
+  m_Sprite: {fileID: 1704278322568006738, guid: db7cd8df42a3ba2499543f7f9b27f7fc,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -80,6 +82,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &3955267391439128016
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 26431755058434271}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 60ad2a7fc4c23ce41b40a8b6ffec6525, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4466301982513214004
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,10 +147,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54ab4c40bb72e4e98bdaf42775df0bcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenMovement: 0.05
+  inputDelaySeconds: 0.025
+  secondsBetweenMovement: 0.5
+  secondsBetweenLaunching: 1
   Hauler: {fileID: 0}
   Lanes: {fileID: 5886147957378024864, guid: e8927b3ae83f944829580b398d012704, type: 3}
   Cars: {fileID: 6091734080063334014, guid: 543fd6a1f24724aa89837e3406c9bdbd, type: 3}
+  carSpeedForceMultiplier: 137
   AudioSource: {fileID: 0}
   CarLaunched: {fileID: 0}
   HaulerMoved: {fileID: 0}
