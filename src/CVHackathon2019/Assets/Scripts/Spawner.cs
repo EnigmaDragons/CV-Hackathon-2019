@@ -24,6 +24,7 @@ public class Spawner : MonoBehaviour
     private void SpawnCustomer()
     {
         var customerPrototype = Customers[0];
-        Instantiate(customerPrototype, new Vector3(100, 400, 0), Quaternion.identity);
+        var newPosition = new Vector3(0, 0, 0);
+        Instantiate(customerPrototype, newPosition, Quaternion.identity);
     }
 }
