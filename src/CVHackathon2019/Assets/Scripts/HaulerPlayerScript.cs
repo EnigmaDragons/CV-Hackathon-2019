@@ -15,6 +15,9 @@ public class HaulerPlayerScript : MonoBehaviour
 	// start in middle lane (0,1,2)
 	private int currentLane = 1;
 	public GameObject Cars;
+    public AudioSource AudioSource;
+    public AudioClip CarLaunched;
+    public AudioClip HaulerMoved;
 
 	void StartGame()
 	{
@@ -30,6 +33,7 @@ public class HaulerPlayerScript : MonoBehaviour
 		var carPrototype = Cars;
 		GameObject car = Instantiate(carPrototype, transform.position, Quaternion.identity) as GameObject;
 		car.GetComponent<Rigidbody2D>().AddForce(-transform.right*100);
+        AudioSource.PlayOneShot(CarLaunched);
 	}
 
 	private void UpButton()
@@ -56,7 +60,8 @@ public class HaulerPlayerScript : MonoBehaviour
 	private void UpdatePosition()
 	{
 		transform.position = new Vector3(transform.position.x, LanePositions[currentLane].position.y, 0);
-		Debug.Log("Lane = " + currentLane);
+        AudioSource.PlayOneShot(HaulerMoved);
+        Debug.Log("Lane = " + currentLane);
 	}
 	
 	private void ActionButton()
