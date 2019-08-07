@@ -311,6 +311,12 @@ PrefabInstance:
       propertyPath: Hauler
       value: 
       objectReference: {fileID: 1463171935}
+    - target: {fileID: 4466301982513214005, guid: 2fa7d2efed50044cb994d7c54e963c36,
+        type: 3}
+      propertyPath: CustomerSpawner
+      value: 
+      objectReference: {fileID: 2877866834280461763, guid: 41a0d0edc3b8f4b449880ad43e8131bc,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fa7d2efed50044cb994d7c54e963c36, type: 3}
 --- !u!1 &1463171935 stripped
