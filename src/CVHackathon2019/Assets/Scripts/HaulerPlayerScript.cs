@@ -37,10 +37,8 @@ public class HaulerPlayerScript : MonoBehaviour
 		if (currentLane > 0)
 		{
 			currentLane -= 1;
-			this.transform.position = LanePositions[currentLane].position;
 		}
-
-		Debug.Log("Lane = " + currentLane);
+		UpdatePosition();
 	}
 
 	private void DownButton()
@@ -49,12 +47,17 @@ public class HaulerPlayerScript : MonoBehaviour
 		if (currentLane < 2)
 		{
 			currentLane += 1;
-			this.transform.position = LanePositions[currentLane].position;
 		}
+		UpdatePosition();
 
-		Debug.Log("Lane = " + currentLane);
 	}
 
+	private void UpdatePosition()
+	{
+		transform.position = new Vector3(transform.position.x, LanePositions[currentLane].position.y, 0);
+		Debug.Log("Lane = " + currentLane);
+	}
+	
 	private void ActionButton()
 	{
 		SpawnCar();
