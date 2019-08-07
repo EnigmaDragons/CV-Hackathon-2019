@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
+using Assets.Scripts;
 
 public class Customer : MonoBehaviour
 {
-    public float Speed = 10f;
+    public float[] Speeds = { 10f, 10f, 10f, 10f,  8f, 6f, 4f, 12f, 14f, 16f};
+
     
     void Start()
     {
-        GetComponent<Rigidbody2D>().AddForce(new Vector2(Speed, 0));
+        GetComponent<Rigidbody2D>().AddForce(new Vector2(Speeds.Random(), 0));
     }
     
     private void OnCollisionEnter(Collision other) => HandleCollision(other.gameObject);
