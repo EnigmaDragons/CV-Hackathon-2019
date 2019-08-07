@@ -6,7 +6,7 @@ using Assets.Scripts;
 public class Spawner : MonoBehaviour
 {
     public float SpawnIntervalSeconds = 1.5f;
-    public bool IsGameOver = false;
+    public bool IsGameOver => GameState.Current.IsGameOver;
     public GameObject[] Customers;
     public GameObject Lanes;
     
