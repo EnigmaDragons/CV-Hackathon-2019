@@ -3,7 +3,7 @@ using UnityEngine;
 public class ChangeMusic : MonoBehaviour
 {
     public AudioClip menuMusic;
-    public AudioClip gameMusic;
+    public AudioClip Level1Music;
     private AudioSource source;
 
     void Awake()
@@ -13,14 +13,14 @@ public class ChangeMusic : MonoBehaviour
 
     void OnLevelWasLoaded(int level)
     {
-        if (level == 2)
+        if (level == 0)
         {
             source.clip = menuMusic;
             source.Play();
         }
-        else if (level == 2)
+        else if (level == 1)
         {
-            source.clip = gameMusic;
+            source.clip = Level1Music;
             source.Play();
         }
     }

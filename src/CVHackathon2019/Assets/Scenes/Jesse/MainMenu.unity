@@ -699,7 +699,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 1793728579}
   m_HandleRect: {fileID: 1681894186}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 0.75
@@ -721,7 +721,6 @@ GameObject:
   - component: {fileID: 1065276449}
   - component: {fileID: 1065276448}
   - component: {fileID: 1065276452}
-  - component: {fileID: 1065276453}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -824,20 +823,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42c922c896d3a014dbd2e45c044126c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1065276453
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1065276447}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddf1faf6a8eac134b802ae04ecc08f1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  menuMusic: {fileID: 0}
-  gameMusic: {fileID: 0}
 --- !u!1 &1185730742
 GameObject:
   m_ObjectHideFlags: 0
@@ -921,7 +906,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 2116410529}
   m_HandleRect: {fileID: 786476831}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 0.75
@@ -1479,6 +1464,7 @@ GameObject:
   - component: {fileID: 1986823866}
   - component: {fileID: 1986823865}
   - component: {fileID: 1986823864}
+  - component: {fileID: 1986823867}
   m_Layer: 0
   m_Name: BackgroundMusic
   m_TagString: Untagged
@@ -1508,9 +1494,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: bf4a8fd8dbbcd604d9c71282227382e1, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.75
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1608,6 +1594,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1986823867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986823863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddf1faf6a8eac134b802ae04ecc08f1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuMusic: {fileID: 8300000, guid: bf4a8fd8dbbcd604d9c71282227382e1, type: 3}
+  Level1Music: {fileID: 8300000, guid: 0226dda845101ae40a2c6919633470ec, type: 3}
 --- !u!1 &2074565759
 GameObject:
   m_ObjectHideFlags: 0
