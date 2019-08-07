@@ -5,7 +5,7 @@ using UnityEngine;
 public class HaulerPlayerScript : MonoBehaviour
 {
 
-
+	public float timeBetweenMovement = 0.05f;
 	public GameObject Hauler;
 	
 	// start in middle lane (0,1,2)
@@ -35,7 +35,7 @@ public class HaulerPlayerScript : MonoBehaviour
 			currentLane -= 1;
 		}
 
-		Debug.Log(currentLane);
+		Debug.Log("Lane = " + currentLane);
 	}
 
 	private void DownButton()
@@ -46,36 +46,47 @@ public class HaulerPlayerScript : MonoBehaviour
 			currentLane += 1;
 		}
 
-		Debug.Log(currentLane);
+		Debug.Log("Lane = " + currentLane);
 	}
 
 	private void ActionButton()
 	{
-		SpawnCar();
+		//SpawnCar();
 		// shoot car down lane
 
 		Debug.Log("Spawn a car!");
 	}
 
-	private void RunGame()
+	private IEnumerator RunGame()
 	{
+		while(true) {
 
-		// Up arrow button action
-		if (Input.GetAxis("Vertical") > 0)
-		{
-			UpButton();
-		}
+			// Up arrow button action
+			if (Input.GetAxis("Vertical") > 0)
+			{
+				UpButton();
+				yield return new WaitForSeconds(timeBetweenMovement);
+			}
 
-		// Down arrow button action
-		if (Input.GetAxis("Vertical") < 0)
-		{
-			DownButton();
-		}
+			// Down arrow button action
+			else if (Input.GetAxis("Vertical") < 0)
+			{
+				DownButton();
+				yield return new WaitForSeconds(timeBetweenMovement);
+			}
 
-		// Spacebar action
-		if (Input.GetButton("Fire1"))
-		{
-			ActionButton();
+			// Spacebar action
+			else if (Input.GetButton("Jump"))
+			{
+				ActionButton();
+				yield return new WaitForSeconds(timeBetweenMovement);
+			}
+
+			else 
+			{
+				yield return new WaitForSeconds(timeBetweenMovement);
+			}
+
 		}
 
 	}
@@ -84,12 +95,12 @@ public class HaulerPlayerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartGame();
+        StartCoroutine(RunGame());
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        RunGame();
-    }
+    // void Update()
+    // {
+    //     RunGame();
+    // }
 }
