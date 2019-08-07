@@ -47,7 +47,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91d62ea6087970645ab16342730f5462, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 20
+  Speeds:
+  - 10
+  - 10
+  - 10
+  - 10
+  - 8
+  - 6
+  - 4
+  - 12
+  - 14
+  - 16
 --- !u!50 &2475090160101072342
 Rigidbody2D:
   serializedVersion: 4
@@ -79,7 +89,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

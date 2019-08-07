@@ -3,11 +3,17 @@ using Assets.Scripts;
 
 public class Customer : MonoBehaviour
 {
-    public float[] Speeds = { 10f, 10f, 10f, 10f,  8f, 6f, 4f, 12f, 14f, 16f};
+    public int MinSpeed = 10;
+    public int MaxSpeed = 30;
+    public int HundrethsYVariance = 80;
     
     void Start()
     {
-        GetComponent<Rigidbody2D>().AddForce(new Vector2(Speeds.Random(), 0));
+        var pos = gameObject.transform.position;
+        var modifier = Rng.Int(-HundrethsYVariance, HundrethsYVariance) * 0.01f;
+        var newY = pos.y + modifier; 
+        gameObject.transform.position = new Vector3(pos.x, newY, pos.z);
+        GetComponent<Rigidbody2D>().AddForce(new Vector2(Rng.Int(MinSpeed, MaxSpeed), 0));
     }
     
     private void OnCollisionEnter(Collision other) => HandleCollision(other.gameObject);
