@@ -6,7 +6,7 @@ using System.Linq;
 public class HaulerPlayerScript : MonoBehaviour
 {
 
-	public float timeBetweenMovement = 0.05f;
+	public float timeBetweenMovement = 0.10f;
 	public GameObject Hauler;
 
 	public GameObject Lanes;
