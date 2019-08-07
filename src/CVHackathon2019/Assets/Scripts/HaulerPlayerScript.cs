@@ -35,7 +35,7 @@ public class HaulerPlayerScript : MonoBehaviour
 	{
 		var carPrototype = Cars;
 		GameObject car = Instantiate(carPrototype, transform.position, Quaternion.identity) as GameObject;
-		car.GetComponent<Rigidbody2D>().AddForce(-transform.right*100);
+		car.GetComponent<Rigidbody2D>().AddForce(-transform.right*137);
 
         AudioSource.PlayOneShot(CarLaunched);
 	}
