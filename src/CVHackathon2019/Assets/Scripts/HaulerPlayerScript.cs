@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class HaulerPlayerScript : MonoBehaviour
 {
 
 	public float timeBetweenMovement = 0.05f;
 	public GameObject Hauler;
+
+	public GameObject Lanes;
+	private Transform[] LanePositions => Lanes.transform.OfType<Transform>().Select(x => x).ToArray();
 	
 	// start in middle lane (0,1,2)
 	private int currentLane = 1;
@@ -33,6 +37,7 @@ public class HaulerPlayerScript : MonoBehaviour
 		if (currentLane > 0)
 		{
 			currentLane -= 1;
+			this.transform.position = LanePositions[currentLane].position;
 		}
 
 		Debug.Log("Lane = " + currentLane);
@@ -44,6 +49,7 @@ public class HaulerPlayerScript : MonoBehaviour
 		if (currentLane < 2)
 		{
 			currentLane += 1;
+			this.transform.position = LanePositions[currentLane].position;
 		}
 
 		Debug.Log("Lane = " + currentLane);
