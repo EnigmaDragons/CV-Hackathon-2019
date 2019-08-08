@@ -66,7 +66,7 @@ public class HaulerPlayerScript : MonoBehaviour
     {
         var lane = LanePositions[_currentLane];
         transform.position = new Vector3(transform.position.x, lane.position.y + _offset.y, lane.position.z + _offset.z);
-        Debug.Log("Lane = " + _currentLane);
+        //Debug.Log("Lane = " + _currentLane);
     }
 
     private void LaunchCar()

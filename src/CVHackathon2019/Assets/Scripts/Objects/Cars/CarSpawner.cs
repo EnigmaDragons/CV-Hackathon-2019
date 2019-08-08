@@ -1,6 +1,5 @@
 using UnityEngine;
 
-
 public class CarSpawner : MonoBehaviour
 {
 	public MovingCar Car;

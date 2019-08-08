@@ -3,11 +3,8 @@ using Assets.Scripts;
 
 public class Customer : MonoBehaviour
 {
-    public int MinSpeed = 10;
-    public int MaxSpeed = 30;
     public int HundrethsYVariance = 80;
     
-    public int CustomerReturnRate = 8;
     private bool _isDone;
     
     void Start()
@@ -16,7 +13,7 @@ public class Customer : MonoBehaviour
         var modifier = Rng.Int(-HundrethsYVariance, HundrethsYVariance) * 0.01f;
         var newY = pos.y + modifier; 
         gameObject.transform.position = new Vector3(pos.x, newY, pos.z);
-        GetComponent<Rigidbody2D>().AddForce(new Vector2(Rng.Int(MinSpeed, MaxSpeed), 0));
+        GetComponent<Rigidbody2D>().AddForce(new Vector2(GameState.Current.CustomerSpeed, 0));
     }
 
     void Update()
@@ -40,11 +37,7 @@ public class Customer : MonoBehaviour
             OnCarCollide(other);
     }
 
-    private bool CustomerReturnsCar()
-    {
-        var chance = Rng.Int(1, 100);
-        return (chance <= CustomerReturnRate);
-    }
+    private bool CustomerReturnsCar() => Rng.Int(1, 100) <= GameState.Current.CarReturnRate;
 
     private void AttachCustomerToCar(MovingCar car)
     {

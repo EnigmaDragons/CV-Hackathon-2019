@@ -8,7 +8,7 @@ public class HaulerInputHandler : MonoBehaviour
     public float secondsBetweenMovement = 0.3f;
     public float secondsBetweenActions = 1.0f;
     public bool canMove = false;
-    
+
     private HaulerPlayerScript _haulerPlayerScript;
     private float _timer;
     private float _lastMovementTime;
@@ -24,21 +24,25 @@ public class HaulerInputHandler : MonoBehaviour
     {
         StartCoroutine(HandleInputs());
     }
-    
+
     void Update()
     {
         _timer += Time.deltaTime;
     }
-    
+
     private bool CanPerformAction => !_haulerPlayerScript.IsLoading && _timer - _lastActionTime >= secondsBetweenActions;
     private bool CanMove => (canMove || !canMove && _releasedKey) && _timer - _lastMovementTime >= secondsBetweenMovement;
-    
+
     private IEnumerator HandleInputs()
     {
         while (true)
         {
-            HandleMovement();
-            HandleActions();
+            if (GameState.Current.IsGameInProgres)
+            {
+                HandleMovement();
+                HandleActions();
+            }
+
             yield return new WaitForSeconds(inputDelaySeconds);
         }
     }
@@ -65,8 +69,7 @@ public class HaulerInputHandler : MonoBehaviour
     {
         _lastMovementTime = _timer;
         _releasedKey = false;
-        var cmd = verticalAxis > 0 ? HaulerCommands.MoveUp : HaulerCommands.MoveDown; 
+        var cmd = verticalAxis > 0 ? HaulerCommands.MoveUp : HaulerCommands.MoveDown;
         _haulerPlayerScript.OnInput(cmd);
     }
-
 }
