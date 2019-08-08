@@ -8,9 +8,7 @@ public class Scoreboard : MonoBehaviour
 	public int score;
 
 	private int _gameScore => GameState.Current.GameScore;
-
-	public MoneyScoreCalculators MoneyScoreCalculators = new MoneyScoreCalculators();
-
+	
 	void Start ()
 	{
 		scoreText = GetComponent<TextMeshProUGUI>();
@@ -20,8 +18,6 @@ public class Scoreboard : MonoBehaviour
 	void Update ()
 	{
 		score = _gameScore;
-		score = MoneyScoreCalculators.CalculateScore();
-
 	    GameState.Current.GameScore = score;
 	    scoreText.text = "$" + score;
 	}

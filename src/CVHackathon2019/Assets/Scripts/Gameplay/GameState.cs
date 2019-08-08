@@ -24,6 +24,7 @@ public sealed class GameState
     public int NumCustomersRequired => _levelConfig?.NumCustomersRequired ?? int.MaxValue;
 
     public int GameScore = 0;
+    public MoneyScoreCalculators MoneyScoreCalculators = new MoneyScoreCalculators();
 
     public void DecreaseStarRating()
     {
@@ -49,6 +50,8 @@ public sealed class GameState
         if (NumCustomersServed >= NumCustomersRequired)
             Outcome = LevelOutcome.Complete;
         Debug.Log($"{NumCustomersServed} / {NumCustomersRequired}");
+
+        MoneyScoreCalculators.AddValueCarDelivered();
     }
 
     public static GameState Current = new GameState();
