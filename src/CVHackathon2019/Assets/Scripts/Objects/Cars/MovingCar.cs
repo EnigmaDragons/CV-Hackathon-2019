@@ -59,8 +59,9 @@ public class MovingCar : MonoBehaviour
     {
         _audioPlayer.PlayCarCrash();
         Debug.Log("Crashed!");
+
+        MoneyScoreCalculators.MinusMoneyCarsCrash();
         
-        GameState.Current.DecreaseStarRating();
         Destroy(GetComponent<Rigidbody2D>());
         Destroy(GetComponent<BoxCollider2D>());
         Destroy(GetComponent<SpriteRenderer>());
@@ -69,7 +70,5 @@ public class MovingCar : MonoBehaviour
         Destroy(other.GetComponent<SpriteRenderer>());
         Destroy(other, 2f);
         Destroy(gameObject, 2f);
-
-        MoneyScoreCalculators.MinusMoneyCarsCrash();
     }
 }
