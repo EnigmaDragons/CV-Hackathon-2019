@@ -20,7 +20,6 @@ public class ReturnCarGameOver : MonoBehaviour
 
     private void SetGameOver()
     {
-        Debug.Log("Game Over");
-        GameState.Current.SetLevelOutcome(LevelOutcome.GameOver);
+        GameState.Current.DecreaseStarRating();
     }
 }
