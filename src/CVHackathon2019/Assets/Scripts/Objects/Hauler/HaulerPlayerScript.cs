@@ -86,6 +86,7 @@ public class HaulerPlayerScript : MonoBehaviour
 
     private IEnumerator LoadCar()
     {
+        _audioPlayer.PlayHaulerLoaded();
         Debug.Log("Began loading car");
         IsLoading = true;
         yield return DriveIntoGarage();
@@ -111,6 +112,7 @@ public class HaulerPlayerScript : MonoBehaviour
     public void Return(MovingCar car)
     {
         _maybeLoadedCar = car;
+        car.SetReturnHandled();
         StartCoroutine(ReturnCarToGarage());
     }
 
@@ -118,7 +120,12 @@ public class HaulerPlayerScript : MonoBehaviour
     {
         Debug.Log("Began loading returned car");
         IsLoading = true;
+        yield return new WaitForSeconds(0.16f);
+        DestroyImmediate(_maybeLoadedCar.GetComponent<Rigidbody2D>());
+        _maybeLoadedCar.transform.parent = transform;
         yield return DriveIntoGarage();
+        _maybeLoadedCar.transform.parent = null;
+        Destroy(_maybeLoadedCar);
         _maybeLoadedCar = CarSpawner.LoadCar(this);
         yield return DriveOutOfGarage();
         _rigidbody.AddForce(transform.right * DriveSpeed);

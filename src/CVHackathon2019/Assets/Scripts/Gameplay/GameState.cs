@@ -9,6 +9,7 @@ public sealed class GameState
     private readonly LevelObj _levelsObj;
     private LevelConfig _levelConfig => _levelsObj?.Levels[_levelIndex];
 
+    public int Level => _levelIndex + 1;
     public int NumCustomersServed { get; private set; }
     public int StarRatings { get; private set; } = 5;
 
@@ -21,6 +22,8 @@ public sealed class GameState
     public float CustomerSpawnInterval => _levelConfig?.CustomerSpawnInterval ?? 1f;
     public int CarReturnRate { get; private set; } = 0;
     public int NumCustomersRequired => _levelConfig?.NumCustomersRequired ?? int.MaxValue;
+
+    public int GameScore = 0;
 
     public void DecreaseStarRating()
     {
