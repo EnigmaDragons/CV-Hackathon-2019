@@ -30,7 +30,7 @@ public class CustomerSpawner : MonoBehaviour
 
     private void SpawnCustomer()
     {
-        var customerPrototype = Customers[0];
+        var customerPrototype = Customers.Random();
         Instantiate(customerPrototype, LanePositions.Random().position, Quaternion.identity);
     }
 }
