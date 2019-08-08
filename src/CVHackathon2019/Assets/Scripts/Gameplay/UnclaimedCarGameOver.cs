@@ -4,6 +4,8 @@ namespace Assets.Scripts.Gameplay
 {
     public class UnclaimedCarGameOver: MonoBehaviour
     {
+        public AudioPlayer _audioPlayer;
+
         private void OnCollisionEnter(Collision other) => HandleCollision(other.gameObject);
         private void OnCollisionEnter2D(Collision2D other) => HandleCollision(other.gameObject);
         private void OnTriggerEnter(Collider other) => HandleCollision(other.gameObject);
@@ -21,6 +23,7 @@ namespace Assets.Scripts.Gameplay
 
         private void OnunclaimedCar()
         {
+            _audioPlayer.PlayUnclaimedCar();
             GameState.Current.DecreaseStarRating();
         }
     }
