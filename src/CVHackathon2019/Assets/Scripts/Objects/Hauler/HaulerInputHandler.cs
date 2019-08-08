@@ -6,7 +6,7 @@ public class HaulerInputHandler : MonoBehaviour
 {
     public float inputDelaySeconds = 0.025f;
     public float secondsBetweenMovement = 0.3f;
-    public float secondsBetweenActions = 1.0f;
+    public float secondsBetweenActions = 0.5f;
     public bool canMove = false;
 
     private HaulerPlayerScript _haulerPlayerScript;
