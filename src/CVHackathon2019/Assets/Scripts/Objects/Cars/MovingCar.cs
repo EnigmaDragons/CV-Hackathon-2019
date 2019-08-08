@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Assets.Scripts;
 
 public class MovingCar : MonoBehaviour
 {
@@ -6,6 +7,13 @@ public class MovingCar : MonoBehaviour
     public float CarDriveSpeed = 137;
 
     public bool hasPassenger = false;
+
+    public Sprite[] carSprites;
+
+    void Start()
+    {
+        gameObject.GetComponent<SpriteRenderer>().sprite = carSprites.Random();
+    }
 
     public void Launch()
     {
@@ -21,6 +29,6 @@ public class MovingCar : MonoBehaviour
         var rigidBody = GetComponent<Rigidbody2D>();
         var localScale = transform.localScale;
         transform.localScale = new Vector3(localScale.x * -1, localScale.y, localScale.z); ;
-        rigidBody.AddForce(transform.right * 2 * CarDriveSpeed);
+        rigidBody.AddForce(transform.right * CarDriveSpeed);
     }
 }
