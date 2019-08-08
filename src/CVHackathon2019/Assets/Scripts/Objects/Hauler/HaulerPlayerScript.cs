@@ -86,6 +86,7 @@ public class HaulerPlayerScript : MonoBehaviour
 
     private IEnumerator LoadCar()
     {
+        _audioPlayer.PlayHaulerLoaded();
         Debug.Log("Began loading car");
         IsLoading = true;
         yield return DriveIntoGarage();

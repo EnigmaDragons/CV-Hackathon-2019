@@ -5,6 +5,7 @@ public class AudioPlayer : MonoBehaviour
     public AudioSource AudioSource;
     public AudioClip CarLaunched;
     public AudioClip HaulerMoved;
+    public AudioClip HaulerLoaded;
     public AudioClip CustomerServed;
 
     public void PlayHaulerMoved()
@@ -15,6 +16,11 @@ public class AudioPlayer : MonoBehaviour
     public void PlayCarLaunched()
     {
         AudioSource.PlayOneShot(CarLaunched);
+    }
+
+    public void PlayHaulerLoaded()
+    {
+        AudioSource.PlayOneShot(HaulerLoaded);
     }
 
     public void PlayCustomerServed()
