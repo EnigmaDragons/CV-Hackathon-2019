@@ -48,9 +48,11 @@ public class Customer : MonoBehaviour
 
     private void OnCarCollide(GameObject other)
     {
+        var car = other.GetComponent<MovingCar>();
+        if (car.IsReturn) return;
+
         if (CustomerReturnsCar())
         {
-            var car = other.GetComponent<MovingCar>();
             car.ReturnCar();
             return;
         }
