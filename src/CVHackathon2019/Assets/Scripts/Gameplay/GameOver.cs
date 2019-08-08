@@ -2,22 +2,14 @@
 
 public class GameOver : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision other) => SetGameOver();
-    private void OnCollisionEnter2D(Collision2D other) => SetGameOver();
-    private void OnTriggerEnter(Collider other) => SetGameOver();
-    private void OnTriggerEnter2D(Collider2D other) => SetGameOver();
-
-    public void Update()
-    {
-        if (Input.GetButton("Fire3"))
-            SetGameOver();
-    }
+    private void OnCollisionEnter(Collision other) => SetGameOver(other.gameObject.GetComponent<Customer>());
+    private void OnCollisionEnter2D(Collision2D other) => SetGameOver(other.gameObject.GetComponent<Customer>());
+    private void OnTriggerEnter(Collider other) => SetGameOver(other.gameObject.GetComponent<Customer>());
+    private void OnTriggerEnter2D(Collider2D other) => SetGameOver(other.GetComponent<Customer>());
     
-    private void SetGameOver()
+    private void SetGameOver(Customer customer)
     {
+        customer.Despawn();
         GameState.Current.DecreaseStarRating();
-        
-
-        Debug.Log("Game Over");
     }
 }

@@ -72,4 +72,9 @@ public class Customer : MonoBehaviour
 
         AttachCustomerToCar(car);
     }
+
+    public void Despawn()
+    {
+        Destroy(gameObject);
+    }
 }
