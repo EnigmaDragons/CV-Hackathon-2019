@@ -278,7 +278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Car: {fileID: 2277943296742479079, guid: 543fd6a1f24724aa89837e3406c9bdbd, type: 3}
-  PositionOffset: {x: -0.9, y: -0.45, z: -10}
+  PositionOffset: {x: -0.9, y: -0.45, z: 0}
 --- !u!1 &8081911643598509771
 GameObject:
   m_ObjectHideFlags: 0
