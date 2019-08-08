@@ -50,12 +50,9 @@ public class Customer : MonoBehaviour
     {
         gameObject.transform.SetParent(car.transform);
         gameObject.GetComponent<Animator>().SetBool("IsCatching", true);
-
         Destroy(gameObject.GetComponent<Rigidbody2D>());
-
         car.hasPassenger = true;
-
-        // change z-index of parent car
+        car.transform.position = car.transform.position + new Vector3(0,0,1);
     }
 
     private void OnCarCollide(GameObject other)
