@@ -31,6 +31,7 @@ public class CustomerSpawner : MonoBehaviour
     private void SpawnCustomer()
     {
         var customerPrototype = Customers.Random();
-        Instantiate(customerPrototype, LanePositions.Random().position, Quaternion.identity);
+        var lane = LanePositions.Random().position;
+        Instantiate(customerPrototype, new Vector3(lane.x, lane.y, lane.z), Quaternion.identity);
     }
 }
