@@ -17,12 +17,15 @@ public class HaulerPlayerScript : MonoBehaviour
     private int _currentLane = 1;
     private MovingCar _maybeLoadedCar;
     private Rigidbody2D _rigidbody;
+    private Vector3 _offset;
     private Transform[] LanePositions => Lanes.transform.OfType<Transform>().Select(x => x).ToArray();
   
     public void Start()
     {
+        _offset = gameObject.transform.localPosition;
         _rigidbody = GetComponent<Rigidbody2D>();
         Inputs.Init(this);
+        UpdatePosition();
     }
     
     public bool IsLoading { get; private set; }
@@ -40,7 +43,10 @@ public class HaulerPlayerScript : MonoBehaviour
     private void MoveUp()
     {
         if (_currentLane > 0)
+        {
             _currentLane -= 1;
+            AudioClips.PlayHaulerMoved();
+        }
 
         UpdatePosition();
     }
@@ -48,15 +54,18 @@ public class HaulerPlayerScript : MonoBehaviour
     private void MoveDown()
     {
         if (_currentLane < 2)
+        {
             _currentLane += 1;
+            AudioClips.PlayHaulerMoved();
+        }
 
         UpdatePosition();
     }
 
     private void UpdatePosition()
     {
-        transform.position = new Vector3(transform.position.x, LanePositions[_currentLane].position.y, 0);
-        AudioClips.PlayHaulerMoved();
+        var lane = LanePositions[_currentLane];
+        transform.position = new Vector3(transform.position.x, lane.position.y + _offset.y, lane.position.z + _offset.z);
         Debug.Log("Lane = " + _currentLane);
     }
 
