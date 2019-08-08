@@ -43,7 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00c69a5415cac6a4c874ed12b4d48440, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnIntervalSeconds: 1.5
+  SpawnIntervalSeconds: 3
+  SpawnVariance: 4
   Customers:
   - {fileID: 2475090160101072341, guid: fd90c438651467441acc2c496c41e0e3, type: 3}
   Lanes: {fileID: 5886147957378024864, guid: e8927b3ae83f944829580b398d012704, type: 3}
