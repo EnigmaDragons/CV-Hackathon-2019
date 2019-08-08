@@ -5,9 +5,11 @@ public class MovingCar : MonoBehaviour
 {
     public bool IsReturn = false;
     public float CarDriveSpeed = 137;
+    public bool NeedsToBeReturned => IsReturn && !_isReturned;
 
     public bool hasPassenger = false;
-
+    private bool _isReturned = false;
+    
     public Sprite[] carSprites;
 
     void Start()
@@ -29,6 +31,11 @@ public class MovingCar : MonoBehaviour
         var rigidBody = GetComponent<Rigidbody2D>();
         var localScale = transform.localScale;
         transform.localScale = new Vector3(localScale.x * -1, localScale.y, localScale.z); ;
-        rigidBody.AddForce(transform.right * CarDriveSpeed);
+        rigidBody.AddForce(transform.right * CarDriveSpeed * 2);
+    }
+
+    public void SetReturnHandled()
+    {
+        _isReturned = true;
     }
 }

@@ -118,6 +118,7 @@ public class HaulerPlayerScript : MonoBehaviour
     {
         Debug.Log("Began loading returned car");
         IsLoading = true;
+        yield return new WaitForSeconds(0.2f);
         yield return DriveIntoGarage();
         _maybeLoadedCar = CarSpawner.LoadCar(this);
         yield return DriveOutOfGarage();

@@ -9,6 +9,12 @@ public class AcceptReturns : MonoBehaviour
     private void OnTriggerEnter(Collider other) => HandleCollision(other.gameObject);
     private void OnTriggerEnter2D(Collider2D other) => HandleCollision(other.gameObject);
 
+    public void Start()
+    {
+        if (Hauler == null)
+            Debug.LogError("Accept Car is missing Hauler");
+    }
+    
     private void HandleCollision(GameObject other)
     {
         const int carLayer = 8;
@@ -19,12 +25,11 @@ public class AcceptReturns : MonoBehaviour
     private void OnCarCollide(GameObject other)
     {
         var car = other.GetComponent<MovingCar>();
-        if (car.IsReturn)
+        if (car.NeedsToBeReturned && Hauler.HasCar)
         {
-            Destroy(other);
+            Destroy(car);
         }
-
-        if (car.IsReturn && !Hauler.HasCar)
+        else if (car.NeedsToBeReturned && !Hauler.HasCar)
         {
             Hauler.Return(car);
         }
