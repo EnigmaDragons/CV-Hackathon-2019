@@ -5,7 +5,6 @@ using System.Linq;
 
 public class HaulerPlayerScript : MonoBehaviour
 {
-    public float inputDelaySeconds = 0.025f;
     public float secondsBetweenMovement = 0.5f;
     public float secondsBetweenLaunching = 1.0f;
     public float secondsToLoadCar = 1.6f;
@@ -19,12 +18,6 @@ public class HaulerPlayerScript : MonoBehaviour
 
     // start in middle lane (0,1,2)
     private int currentLane = 1;
-
-    // Input tracking
-    private float _timer;
-    private float _lastMovementTime;
-    private float _lastActionTime;
-    private bool _releasedKey = true;
   
     // car spawner
     public CarSpawner myCarSpawner;
