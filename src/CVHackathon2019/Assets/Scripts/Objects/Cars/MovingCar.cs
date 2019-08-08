@@ -3,6 +3,7 @@ using Assets.Scripts;
 
 public class MovingCar : MonoBehaviour
 {
+    public AudioPlayer _audioPlayer;
     public bool IsReturn = false;
     public float CarDriveSpeed = 137;
     public bool NeedsToBeReturned => IsReturn && !_isReturned;
@@ -53,6 +54,7 @@ public class MovingCar : MonoBehaviour
 
     private void OnCrash(GameObject other)
     {
+        _audioPlayer.PlayCarCrash();
         Debug.Log("Crashed!");
         GameState.Current.DecreaseStarRating();
         Destroy(other);
