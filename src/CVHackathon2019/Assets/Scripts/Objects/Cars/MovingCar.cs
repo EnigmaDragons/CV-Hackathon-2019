@@ -22,7 +22,6 @@ public class MovingCar : MonoBehaviour
         transform.parent = null;
         gameObject.AddComponent<Rigidbody2D>();
         GetComponent<Rigidbody2D>().AddForce(-transform.right * CarDriveSpeed);
-        //Debug.Log("Launch a car!");
     }
 
     public void ReturnCar()
