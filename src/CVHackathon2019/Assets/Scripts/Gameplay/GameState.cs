@@ -1,14 +1,27 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Linq;
+using UnityEngine;
 
 public sealed class GameState
 {
-    public bool IsGameOver => Outcome == LevelOutcome.GameOver;
-    public bool IsLevelComplete => Outcome == LevelOutcome.Complete;
-    public LevelOutcome Outcome { get; private set; } = LevelOutcome.Incomplete;
-    public int NumCustomersServed { get; private set; } = 0;
-    public int NumCustomersRequired { get; private set; } = 10;
-    public int StarRatings { get; private set; } = 5;
+    private static bool _initialied = false;
+    private int _levelIndex;
+    private LevelObj _levelsObj;
+    private LevelConfig _levelConfig => _levelsObj?.Levels[_levelIndex];
 
+    public int NumCustomersServed { get; private set; }
+    public int StarRatings { get; private set; } = 5;
+    
+    public LevelOutcome Outcome { get; private set; } = LevelOutcome.Incomplete;
+    public bool IsGameOver => Outcome == LevelOutcome.GameOver;
+    public bool IsGameInProgres => Outcome == LevelOutcome.Incomplete;
+    public bool IsLevelComplete => Outcome == LevelOutcome.Complete;
+    
+    public float CustomerSpeed => _levelConfig?.CustomerSpeed ?? 0.0f;
+    public float CustomerSpawnInterval => _levelConfig?.CustomerSpawnInterval ?? 1f;
+    public int CarReturnRate => _levelConfig?.CarReturnRate ?? 0;
+    public int NumCustomersRequired => _levelConfig?.NumCustomersRequired ?? int.MaxValue;
+    
     public void DecreaseStarRating()
     {
         StarRatings -= 1;
@@ -37,7 +50,39 @@ public sealed class GameState
 
     public static GameState Current = new GameState();
     public static void Reset() => Current = new GameState();
-    private GameState() {}
+    public static void Init(LevelObj levels)
+    {
+        if (!_initialied)
+        {
+            Current = new GameState(levels);
+            _initialied = true;
+            Debug.Log("Initialized Game State");
+        }
+    }
+
+    private GameState() { Debug.Log("==============Reset==============="); }
+    private GameState(LevelObj levelsObj)
+    {
+        _levelIndex = 0;
+        _levelsObj = levelsObj;
+        Debug.Log("Level Count: " + levelsObj.Levels + ", NumRequired: " + (levelsObj?.Levels.First()?.NumCustomersRequired ?? -99));
+    }
+
+    public static void NextLevel()
+    {
+        Current._levelIndex++;
+        Current.Outcome = LevelOutcome.Incomplete;
+        Current.NumCustomersServed = 0;
+        Current.StarRatings = 0;
+        Debug.Log("Next Level! Index: " + Current._levelIndex);
+    }
+
+    public static bool HasNextLevel()
+    {
+        var hasNextLevel = Current._levelIndex < (Current?._levelsObj?.Levels?.Length - 1 ?? 0);
+        Debug.Log("Level Index: " + Current._levelIndex + ", Levels Length: " + Current._levelsObj.Levels.Length + "Has Next: " + hasNextLevel);
+        return hasNextLevel;
+    }
 }
 
 public enum LevelOutcome
