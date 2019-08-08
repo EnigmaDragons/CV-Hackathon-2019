@@ -1,16 +1,18 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 
 public class OnLevelComplete : MonoBehaviour
 {
-    public GameObject ToActivate;
+    public GameObject[] ToActivate;
     private bool _wasTriggered;
     
-    void Update()
+    public void Update()
     {
         if (!_wasTriggered && GameState.Current.IsLevelComplete)
         {
             _wasTriggered = true;
-            ToActivate.SetActive(true);
+            Debug.Log($"Activating {ToActivate.Length} Items");
+            ToActivate.ToList().ForEach(x => x.SetActive(true));
         }
     }
 }

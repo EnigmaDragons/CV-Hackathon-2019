@@ -16,6 +16,6 @@ public class GameOver : MonoBehaviour
     private void SetGameOver()
     {
         Debug.Log("Game Over");
-        GameState.Current.Outcome = LevelOutcome.GameOver;
+        GameState.Current.SetLevelOutcome(LevelOutcome.GameOver);
     }
 }

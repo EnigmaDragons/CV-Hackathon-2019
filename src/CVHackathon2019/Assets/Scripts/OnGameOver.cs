@@ -6,7 +6,7 @@ public class OnGameOver : MonoBehaviour
     public GameObject[] ToActivate;
     private bool _wasTriggered;
     
-    void Update()
+    public void Update()
     {
         if (!_wasTriggered && GameState.Current.IsGameOver)
         {
