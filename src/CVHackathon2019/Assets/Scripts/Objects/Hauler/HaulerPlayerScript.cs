@@ -125,7 +125,7 @@ public class HaulerPlayerScript : MonoBehaviour
         _maybeLoadedCar.transform.parent = transform;
         yield return DriveIntoGarage();
         _maybeLoadedCar.transform.parent = null;
-        Destroy(_maybeLoadedCar);
+        DestroyImmediate(_maybeLoadedCar);
         _maybeLoadedCar = CarSpawner.LoadCar(this);
         yield return DriveOutOfGarage();
         _rigidbody.AddForce(transform.right * DriveSpeed);
