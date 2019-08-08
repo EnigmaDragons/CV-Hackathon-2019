@@ -5,6 +5,8 @@ public class MovingCar : MonoBehaviour
     public bool IsReturn = false;
     public float CarDriveSpeed = 137;
 
+    public bool hasPassenger = false;
+
     public void Launch()
     {
         transform.parent = null;
