@@ -12,7 +12,6 @@ public class HaulerPlayerScript : MonoBehaviour
     public bool hasCarLoaded = false;
     public bool canMove = false;
 
-    public float CarDriveSpeed = 137;
     public float DriveSpeed = 4500;
     private Rigidbody2D _rigidbody;
     public GameObject Lanes;
@@ -26,15 +25,13 @@ public class HaulerPlayerScript : MonoBehaviour
     private float _lastMovementTime;
     private float _lastActionTime;
     private bool _releasedKey = true;
-    
-    // audio
-    public AudioSource AudioSource;
-    public AudioClip CarLaunched;
-    public AudioClip HaulerMoved;
-
+  
     // car spawner
     public CarSpawner myCarSpawner;
-    private GameObject _maybeLoadedCar;
+    private MovingCar _maybeLoadedCar;
+
+    // Audio
+    public AudioClips _audioClips;
 
     private void MoveUp()
     {
@@ -62,19 +59,16 @@ public class HaulerPlayerScript : MonoBehaviour
     private void UpdatePosition()
     {
         transform.position = new Vector3(transform.position.x, LanePositions[currentLane].position.y, 0);
-
-        AudioSource.PlayOneShot(HaulerMoved);
+        _audioClips.PlayHaulerMoved();
         Debug.Log("Lane = " + currentLane);
     }
 
     private void LaunchCar()
     {
-        hasCarLoaded = false;
-        _maybeLoadedCar.transform.parent = null;
-        _maybeLoadedCar.AddComponent<Rigidbody2D>();
-        _maybeLoadedCar.GetComponent<Rigidbody2D>().AddForce(-transform.right * CarDriveSpeed);
+        _audioClips.PlayCarLaunched();
+        _maybeLoadedCar.Launch();
         _maybeLoadedCar = null;
-        Debug.Log("Launch a car!");
+        hasCarLoaded = false;
     }
 
     private IEnumerator RunGame()
@@ -95,26 +89,6 @@ public class HaulerPlayerScript : MonoBehaviour
 
             yield return new WaitForSeconds(inputDelaySeconds);
         }
-    }
-
-    private void OnCollisionEnter(Collision other) => HandleCollision(other.gameObject);
-    private void OnCollisionEnter2D(Collision2D other) => HandleCollision(other.gameObject);
-    private void OnTriggerEnter(Collider other) => HandleCollision(other.gameObject);
-    private void OnTriggerEnter2D(Collider2D other) => HandleCollision(other.gameObject);
-
-    private void HandleCollision(GameObject other)
-    {
-        const int carLayer = 8;
-        if (other.layer == carLayer)
-            OnCarCollide(other);
-    }
-
-    private void OnCarCollide(GameObject other)
-    {
-        var car = other.GetComponent<MovingCar>();
-        if (!car.IsReturn) return;
-
-        Destroy(other);
     }
 
     private void PerformAction()

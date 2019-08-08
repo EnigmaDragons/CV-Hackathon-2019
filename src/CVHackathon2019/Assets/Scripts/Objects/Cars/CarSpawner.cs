@@ -3,9 +3,10 @@ using UnityEngine;
 
 public class CarSpawner : MonoBehaviour
 {
-	public GameObject Car;
+	public MovingCar Car;
 
-    public GameObject LoadCar(HaulerPlayerScript haulerPlayerScript)
+
+    public MovingCar LoadCar(HaulerPlayerScript haulerPlayerScript)
     {
         var car = Instantiate(Car, haulerPlayerScript.transform);
         Destroy(car.GetComponent<Rigidbody2D>());

@@ -113,6 +113,7 @@ GameObject:
   - component: {fileID: 4466301982513214005}
   - component: {fileID: -3225890253038904971}
   - component: {fileID: 6438117851753744085}
+  - component: {fileID: 458623732342109356}
   m_Layer: 0
   m_Name: Hauler
   m_TagString: Untagged
@@ -156,12 +157,10 @@ MonoBehaviour:
   secondsToLoadCar: 1
   hasCarLoaded: 0
   canMove: 0
-  Lanes: {fileID: 5886147957378024864, guid: e8927b3ae83f944829580b398d012704, type: 3}
-  AudioSource: {fileID: 0}
-  CarLaunched: {fileID: 0}
-  HaulerMoved: {fileID: 0}
-  myCarSpawner: {fileID: 7272406006141192859}
   DriveSpeed: 137
+  Lanes: {fileID: 5886147957378024864, guid: e8927b3ae83f944829580b398d012704, type: 3}
+  myCarSpawner: {fileID: 7272406006141192859}
+  _audioClips: {fileID: 6086005869308607291}
 --- !u!61 &-3225890253038904971
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -209,6 +208,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &458623732342109356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4466301982513214004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16ea0a06f1e86ee4caf6e38e53ec9991, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4730136105761955655
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,6 +230,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2217506750067823974}
   - component: {fileID: 836790226847521940}
+  - component: {fileID: 6086005869308607291}
   m_Layer: 0
   m_Name: HaulerAudio
   m_TagString: Untagged
@@ -337,6 +349,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6086005869308607291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4730136105761955655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b476af7a2236d1f48b2c84e451445a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AudioSource: {fileID: 836790226847521940}
+  CarLaunched: {fileID: 8300000, guid: 0e6589d90e1112f42821afa8a9fb6e5f, type: 3}
+  HaulerMoved: {fileID: 8300000, guid: 284141a50be209b4bb0247db329c118c, type: 3}
 --- !u!1 &7139399557431111826
 GameObject:
   m_ObjectHideFlags: 0
@@ -380,8 +407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fbfdb4b412984425b905c9f63d84c50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Car: {fileID: 6091734080063334014, guid: 543fd6a1f24724aa89837e3406c9bdbd, type: 3}
-  carSpeedForceMultiplier: 137
+  Car: {fileID: 2277943296742479079, guid: 543fd6a1f24724aa89837e3406c9bdbd, type: 3}
 --- !u!1 &8081911643598509771
 GameObject:
   m_ObjectHideFlags: 0

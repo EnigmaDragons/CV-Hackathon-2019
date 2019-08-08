@@ -3,17 +3,14 @@
 public class MovingCar : MonoBehaviour
 {
     public bool IsReturn = false;
+    public float CarDriveSpeed = 137;
 
-    // Start is called before the first frame update
-    void Start()
+    public void Launch()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        transform.parent = null;
+        gameObject.AddComponent<Rigidbody2D>();
+        GetComponent<Rigidbody2D>().AddForce(-transform.right * CarDriveSpeed);
+        Debug.Log("Launch a car!");
     }
 
     public void ReturnCar()
@@ -22,6 +19,6 @@ public class MovingCar : MonoBehaviour
         var rigidBody = GetComponent<Rigidbody2D>();
         var localScale = transform.localScale;
         transform.localScale = new Vector3(localScale.x * -1, localScale.y, localScale.z); ;
-        rigidBody.AddForce(transform.right * 2 * 137);
+        rigidBody.AddForce(transform.right * 2 * CarDriveSpeed);
     }
 }
