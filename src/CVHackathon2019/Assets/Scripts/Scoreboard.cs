@@ -16,12 +16,12 @@ public class Scoreboard : MonoBehaviour
 
 	void UpdateScore ()
 	{
-	    scoreText.text = "Score: " + score;
+	    scoreText.text = "$" + score;
 	}
 
 	void Update ()
 	{
-		score = GameState.Current.NumCustomersServed;
+		score = 1000*GameState.Current.NumCustomersServed;
 	    UpdateScore ();
 	}
 
