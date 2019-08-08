@@ -8,14 +8,16 @@ public class MoneyScoreCalculators
 	private int _gameScore => GameState.Current.GameScore;
 
 	// multipliers
+	// private int _difficulty = ...
 	private int _level => GameState.Current.Level;
 	private int _numServed => GameState.Current.NumCustomersServed;
 	private int _stars => GameState.Current.StarRatings;
 
 	public int CarDeliveredCashValue = 1000;
 
-	public int CalculateMoneyValue() {
-		var gameplayMultipliers = 1*_level;
+	// Calculate Car value (WIP)
+	public int CalculateAddMoneyValue() {
+		var gameplayMultipliers = 1*_level;//*difficulty
 		var cashMultipliers = 1*CarDeliveredCashValue*_stars;
 		var multipliers = gameplayMultipliers*cashMultipliers;
 
@@ -24,20 +26,29 @@ public class MoneyScoreCalculators
 		return newScore;
 	}
 
-	public void AddValueCarDelivered() {
-		var money = CalculateMoneyValue();
+	public int CalculateRemoveMoneyValue() {
+		var gameplayMultipliers = 1*_level;//*difficulty
+		var cashMultipliers = 1*CarDeliveredCashValue*1;
+		var multipliers = gameplayMultipliers*cashMultipliers;
 
-		GameState.Current.GameScore += money;
+		var newScore = 1*(1*multipliers);
+
+		return newScore;
 	}
 
-	// in progress, global state vars, etc
-	// public int CalculateScore() {
-	// 	var curScore = _gameScore;
-	// 	score = CalculateMoneyValue();
-	// 	var newScore = curScore+score;
+	public void PlusMoneyCarDelivered() {
+		var carValue = CalculateAddMoneyValue();
 
-	// 	var scoreCalc = newScore;
-	// 	return scoreCalc;
-	// }
+		GameState.Current.GameScore += carValue;
+	}
+
+	public void MinusMoneyCarsCrash() {
+		var carValue = CalculateRemoveMoneyValue();
+		var twoCarsValue = (carValue*2);
+
+		GameState.Current.GameScore -= twoCarsValue;
+	}
+
+
 
 }

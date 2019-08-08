@@ -51,7 +51,7 @@ public sealed class GameState
             Outcome = LevelOutcome.Complete;
         Debug.Log($"{NumCustomersServed} / {NumCustomersRequired}");
 
-        MoneyScoreCalculators.AddValueCarDelivered();
+        MoneyScoreCalculators.PlusMoneyCarDelivered();
     }
 
     public static GameState Current = new GameState();
