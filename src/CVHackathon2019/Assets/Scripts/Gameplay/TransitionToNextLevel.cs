@@ -15,15 +15,12 @@ public class TransitionToNextLevel : MonoBehaviour
     {
         Time.timeScale = 0.3f;
         yield return new WaitForSeconds(DelayBeforeNextLevel);
-        if (GameState.HasNextLevel())
+        if (!GameState.HasNextLevel())
+            Application.LoadLevel(2);    // Credits
+        else
         {
             Application.LoadLevel(1);
             GameState.NextLevel();
-        }
-        else
-        {
-            // TODO: You Win!
-            Application.LoadLevel(0);
         }
         Time.timeScale = 1.0f;
     }

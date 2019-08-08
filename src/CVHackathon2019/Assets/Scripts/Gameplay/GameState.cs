@@ -9,6 +9,7 @@ public sealed class GameState
     private readonly LevelObj _levelsObj;
     private LevelConfig _levelConfig => _levelsObj?.Levels[_levelIndex];
 
+    public int Level => _levelIndex + 1;
     public int NumCustomersServed { get; private set; }
     public int StarRatings { get; private set; } = 5;
 
