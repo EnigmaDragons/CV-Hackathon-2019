@@ -173,3 +173,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed25347a59f286042afceb1c8bfcef55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsReturn: 0
+  CarDriveSpeed: 175
