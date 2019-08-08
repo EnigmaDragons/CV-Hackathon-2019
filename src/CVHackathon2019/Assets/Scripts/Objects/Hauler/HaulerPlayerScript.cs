@@ -11,7 +11,7 @@ public class HaulerPlayerScript : MonoBehaviour
     
     public bool HasCar => _maybeLoadedCar != null;
     public CarSpawner CarSpawner;
-    public AudioClips AudioClips;
+    public AudioPlayer _audioPlayer;
     public HaulerInputHandler Inputs;
 
     private int _currentLane = 1;
@@ -45,7 +45,7 @@ public class HaulerPlayerScript : MonoBehaviour
         if (_currentLane > 0)
         {
             _currentLane -= 1;
-            AudioClips.PlayHaulerMoved();
+            _audioPlayer.PlayHaulerMoved();
         }
 
         UpdatePosition();
@@ -56,7 +56,7 @@ public class HaulerPlayerScript : MonoBehaviour
         if (_currentLane < 2)
         {
             _currentLane += 1;
-            AudioClips.PlayHaulerMoved();
+            _audioPlayer.PlayHaulerMoved();
         }
 
         UpdatePosition();
@@ -71,7 +71,7 @@ public class HaulerPlayerScript : MonoBehaviour
 
     private void LaunchCar()
     {
-        AudioClips.PlayCarLaunched();
+        _audioPlayer.PlayCarLaunched();
         _maybeLoadedCar.Launch();
         _maybeLoadedCar = null;
     }
@@ -81,18 +81,46 @@ public class HaulerPlayerScript : MonoBehaviour
         if (_maybeLoadedCar != null)
             LaunchCar();
         else if (!IsLoading && !HasCar)
-            StartCoroutine(LoadCard());
+            StartCoroutine(LoadCar());
     }
 
-    private IEnumerator LoadCard()
+    private IEnumerator LoadCar()
     {
         Debug.Log("Began loading car");
         IsLoading = true;
-        _rigidbody.AddForce(transform.right * DriveSpeed);
-        yield return new WaitForSeconds(SecondsToLoadCar / 2);
+        yield return DriveIntoGarage();
         _maybeLoadedCar = CarSpawner.LoadCar(this);
+        yield return DriveOutOfGarage();
+        _rigidbody.AddForce(transform.right * DriveSpeed);
+        IsLoading = false;
+        Debug.Log("Finished loading car");
+    }
+
+    private object DriveOutOfGarage()
+    {
         _rigidbody.AddForce(-transform.right * DriveSpeed * 2);
-        yield return new WaitForSeconds(SecondsToLoadCar / 2);
+        return new WaitForSeconds(SecondsToLoadCar / 2);
+    }
+
+    private object DriveIntoGarage()
+    {
+        _rigidbody.AddForce(transform.right * DriveSpeed);
+        return new WaitForSeconds(SecondsToLoadCar / 2);
+    }
+
+    public void Return(MovingCar car)
+    {
+        _maybeLoadedCar = car;
+        StartCoroutine(ReturnCarToGarage());
+    }
+
+    private IEnumerator ReturnCarToGarage()
+    {
+        Debug.Log("Began loading returned car");
+        IsLoading = true;
+        yield return DriveIntoGarage();
+        _maybeLoadedCar = CarSpawner.LoadCar(this);
+        yield return DriveOutOfGarage();
         _rigidbody.AddForce(transform.right * DriveSpeed);
         IsLoading = false;
         Debug.Log("Finished loading car");
