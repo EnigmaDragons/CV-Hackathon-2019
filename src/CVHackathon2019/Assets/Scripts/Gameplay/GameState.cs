@@ -7,6 +7,16 @@ public sealed class GameState
     public LevelOutcome Outcome { get; private set; } = LevelOutcome.Incomplete;
     public int NumCustomersServed { get; private set; } = 0;
     public int NumCustomersRequired { get; private set; } = 10;
+    public int StarRatings { get; private set; } = 5;
+
+    public void DecreaseStarRating()
+    {
+        StarRatings -= 1;
+        if (StarRatings > 0) return;
+
+        Outcome = LevelOutcome.GameOver;
+        Debug.Log("Game Over");
+    }
 
     public void SetLevelOutcome(LevelOutcome outcome)
     {
