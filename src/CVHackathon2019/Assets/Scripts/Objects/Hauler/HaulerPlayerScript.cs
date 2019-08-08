@@ -9,6 +9,7 @@ public class HaulerPlayerScript : MonoBehaviour
     public float DriveSpeed = 4500;
     public GameObject Lanes;
     
+    public bool HasCar => _maybeLoadedCar != null;
     public CarSpawner CarSpawner;
     public AudioClips AudioClips;
     public HaulerInputHandler Inputs;
@@ -70,7 +71,7 @@ public class HaulerPlayerScript : MonoBehaviour
     {
         if (_maybeLoadedCar != null)
             LaunchCar();
-        else if (!IsLoading)
+        else if (!IsLoading && !HasCar)
             StartCoroutine(LoadCard());
     }
 
