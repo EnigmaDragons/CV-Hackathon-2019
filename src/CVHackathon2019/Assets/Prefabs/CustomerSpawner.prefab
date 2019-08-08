@@ -47,4 +47,6 @@ MonoBehaviour:
   SpawnVariance: 4
   Customers:
   - {fileID: 2475090160101072341, guid: fd90c438651467441acc2c496c41e0e3, type: 3}
+  - {fileID: 2475090160101072341, guid: 42f5b99931c85c34db20227ca62f430e, type: 3}
+  - {fileID: 2475090160101072341, guid: 92b27efb6b812204ab5cda866f901a48, type: 3}
   Lanes: {fileID: 5886147957378024864, guid: e8927b3ae83f944829580b398d012704, type: 3}
