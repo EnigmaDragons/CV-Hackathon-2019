@@ -1,21 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ReturnCarGameOver : MonoBehaviour
 {
+    private void OnCollisionEnter(Collision other) => HandleCollision(other.gameObject);
+    private void OnCollisionEnter2D(Collision2D other) => HandleCollision(other.gameObject);
+    private void OnTriggerEnter(Collider other) => HandleCollision(other.gameObject);
+    private void OnTriggerEnter2D(Collider2D other) => HandleCollision(other.gameObject);
 
-
-
-    // Start is called before the first frame update
-    void Start()
+    private void HandleCollision(GameObject other)
     {
-        
+        const int carLayer = 8;
+        Debug.Log($"layer = {other.layer}");
+        if (other.layer == carLayer)
+        {
+            var car = other.GetComponent<MovingCar>();
+            if (car.IsReturn) SetGameOver();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void SetGameOver()
     {
-        
+        Debug.Log("Game Over");
+        GameState.Current.SetLevelOutcome(LevelOutcome.GameOver);
     }
 }
