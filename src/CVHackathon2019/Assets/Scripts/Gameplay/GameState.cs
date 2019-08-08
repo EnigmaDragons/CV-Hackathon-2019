@@ -22,6 +22,8 @@ public sealed class GameState
     public int CarReturnRate { get; private set; } = 0;
     public int NumCustomersRequired => _levelConfig?.NumCustomersRequired ?? int.MaxValue;
 
+    public int GameScore = 0;
+
     public void DecreaseStarRating()
     {
         StarRatings -= 1;
