@@ -8,6 +8,7 @@ public class HaulerPlayerScript : MonoBehaviour
     public float inputDelaySeconds = 0.025f;
     public float secondsBetweenMovement = 0.5f;
     public float secondsBetweenLaunching = 1.0f;
+    public bool canHoldMoveKey = false;
     public GameObject Hauler;
 
     public GameObject Lanes;
@@ -24,6 +25,7 @@ public class HaulerPlayerScript : MonoBehaviour
     private float _timer;
     private float _lastMovementTime;
     private float _lastLaunchTime;
+    private bool _releasedKey = true;
     
     // audio
     public AudioSource AudioSource;
@@ -84,15 +86,20 @@ public class HaulerPlayerScript : MonoBehaviour
     {
         while (true)
         {
+            if (!_releasedKey && Input.GetAxis("Vertical") == 0)
+                _releasedKey = true;
+            
             if (Input.GetAxis("Vertical") > 0 && CanMove())
             {
                 MoveUp();
                 _lastMovementTime = _timer;
+                _releasedKey = false;
             }
             else if (Input.GetAxis("Vertical") < 0 && CanMove())
             {
                 MoveDown();
                 _lastMovementTime = _timer;
+                _releasedKey = false;
             }
             else if (Input.GetButton("Jump") && CanLaunch())
             {
@@ -111,7 +118,7 @@ public class HaulerPlayerScript : MonoBehaviour
 
     private bool CanMove()
     {
-        return _timer - _lastMovementTime >= secondsBetweenMovement;
+        return (canHoldMoveKey || !canHoldMoveKey && _releasedKey) && _timer - _lastMovementTime >= secondsBetweenMovement;
     }
 
     // Start is called before the first frame update

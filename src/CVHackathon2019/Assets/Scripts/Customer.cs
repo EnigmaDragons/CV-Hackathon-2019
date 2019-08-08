@@ -43,7 +43,6 @@ public class Customer : MonoBehaviour
     private bool CustomerReturnsCar()
     {
         var chance = Rng.Int(1, 100);
-        Debug.Log("chance = " + chance);
         return (chance <= CustomerReturnRate);
     }
 
@@ -52,6 +51,8 @@ public class Customer : MonoBehaviour
         if (CustomerReturnsCar())
         {
             var car = other.GetComponent<Rigidbody2D>();
+            var localScale = car.transform.localScale;
+            car.transform.localScale = new Vector3(localScale.x * -1, localScale.y, localScale.z); ;
             car.AddForce(transform.right * 2 * 137);
             return;
         }
