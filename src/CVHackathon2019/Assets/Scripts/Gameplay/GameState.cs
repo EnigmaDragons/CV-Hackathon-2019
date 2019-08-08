@@ -24,7 +24,7 @@ public sealed class GameState
             Outcome = LevelOutcome.Complete;
         Debug.Log($"{NumCustomersServed} / {NumCustomersRequired}");
     }
-    
+
     public static GameState Current = new GameState();
     public static void Reset() => Current = new GameState();
     private GameState() {}
