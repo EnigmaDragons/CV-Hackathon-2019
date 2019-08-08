@@ -14,6 +14,8 @@ public class MovingCar : MonoBehaviour
 
     public Sprite[] carSprites;
 
+    public MoneyScoreCalculators MoneyScoreCalculators = new MoneyScoreCalculators();
+
     void Start()
     {
         gameObject.GetComponent<SpriteRenderer>().sprite = carSprites.Random();
@@ -57,6 +59,7 @@ public class MovingCar : MonoBehaviour
     {
         _audioPlayer.PlayCarCrash();
         Debug.Log("Crashed!");
+        
         GameState.Current.DecreaseStarRating();
         Destroy(GetComponent<Rigidbody2D>());
         Destroy(GetComponent<BoxCollider2D>());
@@ -66,5 +69,6 @@ public class MovingCar : MonoBehaviour
         Destroy(other.GetComponent<SpriteRenderer>());
         Destroy(other, 2f);
         Destroy(gameObject, 2f);
+        MoneyScoreCalculators.MinusMoneyCarsCrash();
     }
 }

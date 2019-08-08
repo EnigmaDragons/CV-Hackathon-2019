@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CustomerSpeed: 25
   CustomerSpawnInterval: 2.25
-  CarReturnRate: 14
-  NumCustomersRequired: 12
+  CarReturnRate: 12
+  NumCustomersRequired: 8
