@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Assets.Scripts;
+using System.Collections;
 
 public class MovingCar : MonoBehaviour
 {
@@ -57,7 +58,13 @@ public class MovingCar : MonoBehaviour
         _audioPlayer.PlayCarCrash();
         Debug.Log("Crashed!");
         GameState.Current.DecreaseStarRating();
-        Destroy(other);
-        Destroy(gameObject);
+        Destroy(GetComponent<Rigidbody2D>());
+        Destroy(GetComponent<BoxCollider2D>());
+        Destroy(GetComponent<SpriteRenderer>());
+        Destroy(other.GetComponent<Rigidbody2D>());
+        Destroy(other.GetComponent<BoxCollider2D>());
+        Destroy(other.GetComponent<SpriteRenderer>());
+        Destroy(other, 2f);
+        Destroy(gameObject, 2f);
     }
 }
