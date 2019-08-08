@@ -11,17 +11,17 @@ public sealed class GameState
 
     public int NumCustomersServed { get; private set; }
     public int StarRatings { get; private set; } = 5;
-    
+
     public LevelOutcome Outcome { get; private set; } = LevelOutcome.Incomplete;
     public bool IsGameOver => Outcome == LevelOutcome.GameOver;
     public bool IsGameInProgres => Outcome == LevelOutcome.Incomplete;
     public bool IsLevelComplete => Outcome == LevelOutcome.Complete;
-    
+
     public float CustomerSpeed => _levelConfig?.CustomerSpeed ?? 0.0f;
     public float CustomerSpawnInterval => _levelConfig?.CustomerSpawnInterval ?? 1f;
     public int CarReturnRate => _levelConfig?.CarReturnRate ?? 0;
     public int NumCustomersRequired => _levelConfig?.NumCustomersRequired ?? int.MaxValue;
-    
+
     public void DecreaseStarRating()
     {
         StarRatings -= 1;
@@ -39,7 +39,7 @@ public sealed class GameState
             Outcome = outcome;
         }
     }
-    
+
     public void OnCustomerServed()
     {
         NumCustomersServed++;
@@ -49,7 +49,18 @@ public sealed class GameState
     }
 
     public static GameState Current = new GameState();
-    public static void Reset() => Current = new GameState();
+
+    public static void Reset()
+    {
+        if (!_initialied)
+            Current = new GameState();
+        else
+        {
+            var lvlObj = Current._levelsObj;
+            Current = new GameState(lvlObj);
+        }
+    }
+
     public static void Init(LevelObj levels)
     {
         if (!_initialied)
@@ -60,7 +71,11 @@ public sealed class GameState
         }
     }
 
-    private GameState() { Debug.Log("==============Reset==============="); }
+    private GameState()
+    {
+        Debug.Log("==============Reset===============");
+    }
+
     private GameState(LevelObj levelsObj)
     {
         _levelIndex = 0;
@@ -73,7 +88,7 @@ public sealed class GameState
         Current._levelIndex++;
         Current.Outcome = LevelOutcome.Incomplete;
         Current.NumCustomersServed = 0;
-        Current.StarRatings = 0;
+        Current.StarRatings = 5;
         Debug.Log("Next Level! Index: " + Current._levelIndex);
     }
 

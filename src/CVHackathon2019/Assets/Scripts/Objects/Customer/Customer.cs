@@ -4,7 +4,7 @@ using Assets.Scripts;
 public class Customer : MonoBehaviour
 {
     public int HundrethsYVariance = 80;
-    
+    public AudioPlayer _audioPlayer;
     private bool _isDone;
     
     void Start()
@@ -60,7 +60,7 @@ public class Customer : MonoBehaviour
             car.ReturnCar();
             return;
         }
-
+        _audioPlayer.PlayCustomerServed();
         GameState.Current.OnCustomerServed();
 
         AttachCustomerToCar(car);
