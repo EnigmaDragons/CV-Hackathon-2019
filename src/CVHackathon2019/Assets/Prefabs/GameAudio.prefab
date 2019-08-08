@@ -147,3 +147,5 @@ MonoBehaviour:
   HaulerLoaded: {fileID: 8300000, guid: 05e75b04f8fd04749bef0d3ec1247777, type: 3}
   CustomerServed: {fileID: 8300000, guid: fdf0fb4db8ab76c4e9f3dd882105c54c, type: 3}
   CarCrash: {fileID: 8300000, guid: 57174a14a395b5048acf54bfbaa459f4, type: 3}
+  AngryCustomer: {fileID: 8300000, guid: e2f2c256a4a4f3c4d919d4ba5080d597, type: 3}
+  UnclaimedCar: {fileID: 8300000, guid: d2643c3b5d8241a4fbd6ee84cf69ddcd, type: 3}

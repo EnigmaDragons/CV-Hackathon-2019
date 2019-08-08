@@ -68,6 +68,7 @@ public class Customer : MonoBehaviour
 
     public void Despawn()
     {
-        Destroy(gameObject);
+        _audioPlayer.PlayAngryCustomer();
+        Destroy(gameObject, 3f);
     }
 }
