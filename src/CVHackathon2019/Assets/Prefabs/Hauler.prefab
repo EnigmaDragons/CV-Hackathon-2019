@@ -114,6 +114,7 @@ GameObject:
   - component: {fileID: -3225890253038904971}
   - component: {fileID: 6438117851753744085}
   - component: {fileID: 458623732342109356}
+  - component: {fileID: 3850038203055230562}
   m_Layer: 0
   m_Name: Hauler
   m_TagString: Untagged
@@ -151,16 +152,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54ab4c40bb72e4e98bdaf42775df0bcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputDelaySeconds: 0.025
-  secondsBetweenMovement: 0.5
-  secondsBetweenLaunching: 1
-  secondsToLoadCar: 1
-  hasCarLoaded: 0
-  canMove: 0
+  SecondsToLoadCar: 1.6
   DriveSpeed: 137
   Lanes: {fileID: 5886147957378024864, guid: e8927b3ae83f944829580b398d012704, type: 3}
-  myCarSpawner: {fileID: 7272406006141192859}
-  _audioClips: {fileID: 6086005869308607291}
+  CarSpawner: {fileID: 7272406006141192859}
+  AudioClips: {fileID: 6086005869308607291}
+  Inputs: {fileID: 3850038203055230562}
 --- !u!61 &-3225890253038904971
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -220,6 +217,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16ea0a06f1e86ee4caf6e38e53ec9991, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3850038203055230562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4466301982513214004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9ad7abe4c5b4409d82f9da6d322cbdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputDelaySeconds: 0.025
+  secondsBetweenMovement: 0.5
+  secondsBetweenActions: 1
+  canMove: 0
 --- !u!1 &4730136105761955655
 GameObject:
   m_ObjectHideFlags: 0
