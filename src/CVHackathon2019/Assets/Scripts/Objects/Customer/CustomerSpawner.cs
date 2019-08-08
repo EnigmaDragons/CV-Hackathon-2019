@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using Assets.Scripts;
 
-public class Spawner : MonoBehaviour
+public class CustomerSpawner : MonoBehaviour
 {
     public float SpawnIntervalSeconds = 1.5f;
     public int SpawnVariance = 4;
