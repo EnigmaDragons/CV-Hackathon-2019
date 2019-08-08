@@ -12,5 +12,8 @@ public class DebugButtons : MonoBehaviour
             Debug.Log("Triggered Debug Level Complete");
             GameState.Current.SetLevelOutcome(LevelOutcome.Complete);
         }
+
+        if (Input.GetKey("r"))
+            GameState.SetReturnRate(100);
     }
 }

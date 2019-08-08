@@ -6,7 +6,7 @@ public sealed class GameState
 {
     private static bool _initialied = false;
     private int _levelIndex;
-    private LevelObj _levelsObj;
+    private readonly LevelObj _levelsObj;
     private LevelConfig _levelConfig => _levelsObj?.Levels[_levelIndex];
 
     public int NumCustomersServed { get; private set; }
@@ -19,7 +19,7 @@ public sealed class GameState
 
     public float CustomerSpeed => _levelConfig?.CustomerSpeed ?? 0.0f;
     public float CustomerSpawnInterval => _levelConfig?.CustomerSpawnInterval ?? 1f;
-    public int CarReturnRate => _levelConfig?.CarReturnRate ?? 0;
+    public int CarReturnRate { get; private set; } = 0;
     public int NumCustomersRequired => _levelConfig?.NumCustomersRequired ?? int.MaxValue;
 
     public void DecreaseStarRating()
@@ -80,6 +80,7 @@ public sealed class GameState
     {
         _levelIndex = 0;
         _levelsObj = levelsObj;
+        CarReturnRate = _levelConfig.CarReturnRate;
         Debug.Log("Level Count: " + levelsObj.Levels + ", NumRequired: " + (levelsObj?.Levels.First()?.NumCustomersRequired ?? -99));
     }
 
@@ -89,6 +90,7 @@ public sealed class GameState
         Current.Outcome = LevelOutcome.Incomplete;
         Current.NumCustomersServed = 0;
         Current.StarRatings = 5;
+        Current.CarReturnRate = Current._levelConfig.CarReturnRate;
         Debug.Log("Next Level! Index: " + Current._levelIndex);
     }
 
@@ -97,6 +99,11 @@ public sealed class GameState
         var hasNextLevel = Current._levelIndex < (Current?._levelsObj?.Levels?.Length - 1 ?? 0);
         Debug.Log("Level Index: " + Current._levelIndex + ", Levels Length: " + Current._levelsObj.Levels.Length + "Has Next: " + hasNextLevel);
         return hasNextLevel;
+    }
+
+    public static void SetReturnRate(int i)
+    {
+        Current.CarReturnRate = i;
     }
 }
 

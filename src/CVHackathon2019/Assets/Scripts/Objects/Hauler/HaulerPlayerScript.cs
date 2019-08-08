@@ -81,18 +81,46 @@ public class HaulerPlayerScript : MonoBehaviour
         if (_maybeLoadedCar != null)
             LaunchCar();
         else if (!IsLoading && !HasCar)
-            StartCoroutine(LoadCard());
+            StartCoroutine(LoadCar());
     }
 
-    private IEnumerator LoadCard()
+    private IEnumerator LoadCar()
     {
         Debug.Log("Began loading car");
         IsLoading = true;
-        _rigidbody.AddForce(transform.right * DriveSpeed);
-        yield return new WaitForSeconds(SecondsToLoadCar / 2);
+        yield return DriveIntoGarage();
         _maybeLoadedCar = CarSpawner.LoadCar(this);
+        yield return DriveOutOfGarage();
+        _rigidbody.AddForce(transform.right * DriveSpeed);
+        IsLoading = false;
+        Debug.Log("Finished loading car");
+    }
+
+    private object DriveOutOfGarage()
+    {
         _rigidbody.AddForce(-transform.right * DriveSpeed * 2);
-        yield return new WaitForSeconds(SecondsToLoadCar / 2);
+        return new WaitForSeconds(SecondsToLoadCar / 2);
+    }
+
+    private object DriveIntoGarage()
+    {
+        _rigidbody.AddForce(transform.right * DriveSpeed);
+        return new WaitForSeconds(SecondsToLoadCar / 2);
+    }
+
+    public void Return(MovingCar car)
+    {
+        _maybeLoadedCar = car;
+        StartCoroutine(ReturnCarToGarage());
+    }
+
+    private IEnumerator ReturnCarToGarage()
+    {
+        Debug.Log("Began loading returned car");
+        IsLoading = true;
+        yield return DriveIntoGarage();
+        _maybeLoadedCar = CarSpawner.LoadCar(this);
+        yield return DriveOutOfGarage();
         _rigidbody.AddForce(transform.right * DriveSpeed);
         IsLoading = false;
         Debug.Log("Finished loading car");
