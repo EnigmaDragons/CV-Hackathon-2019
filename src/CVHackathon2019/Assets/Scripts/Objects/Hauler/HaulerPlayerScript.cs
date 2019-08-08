@@ -122,6 +122,7 @@ public class HaulerPlayerScript : MonoBehaviour
         IsLoading = true;
         yield return new WaitForSeconds(0.16f);
         DestroyImmediate(_maybeLoadedCar.GetComponent<Rigidbody2D>());
+        DestroyImmediate(_maybeLoadedCar.GetComponent<Collider2D>());
         _maybeLoadedCar.transform.parent = transform;
         yield return DriveIntoGarage();
         _maybeLoadedCar.transform.parent = null;

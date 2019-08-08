@@ -69,6 +69,7 @@ public class MovingCar : MonoBehaviour
         Destroy(other.GetComponent<SpriteRenderer>());
         Destroy(other, 2f);
         Destroy(gameObject, 2f);
+
         MoneyScoreCalculators.MinusMoneyCarsCrash();
     }
 }
