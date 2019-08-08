@@ -112,6 +112,7 @@ GameObject:
   - component: {fileID: 4466301982513214002}
   - component: {fileID: 4466301982513214005}
   - component: {fileID: -3225890253038904971}
+  - component: {fileID: 6438117851753744085}
   m_Layer: 0
   m_Name: Hauler
   m_TagString: Untagged
@@ -152,13 +153,15 @@ MonoBehaviour:
   inputDelaySeconds: 0.025
   secondsBetweenMovement: 0.5
   secondsBetweenLaunching: 1
-  canHoldMoveKey: 0
-  Hauler: {fileID: 0}
+  secondsToLoadCar: 1
+  hasCarLoaded: 0
+  canMove: 0
   Lanes: {fileID: 5886147957378024864, guid: e8927b3ae83f944829580b398d012704, type: 3}
   AudioSource: {fileID: 0}
   CarLaunched: {fileID: 0}
   HaulerMoved: {fileID: 0}
   myCarSpawner: {fileID: 7272406006141192859}
+  DriveSpeed: 137
 --- !u!61 &-3225890253038904971
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -185,6 +188,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &6438117851753744085
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4466301982513214004}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &4730136105761955655
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,7 +380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fbfdb4b412984425b905c9f63d84c50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cars: {fileID: 6091734080063334014, guid: 543fd6a1f24724aa89837e3406c9bdbd, type: 3}
+  Car: {fileID: 6091734080063334014, guid: 543fd6a1f24724aa89837e3406c9bdbd, type: 3}
   carSpeedForceMultiplier: 137
 --- !u!1 &8081911643598509771
 GameObject:

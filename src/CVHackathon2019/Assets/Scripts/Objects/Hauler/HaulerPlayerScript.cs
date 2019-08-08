@@ -8,9 +8,13 @@ public class HaulerPlayerScript : MonoBehaviour
     public float inputDelaySeconds = 0.025f;
     public float secondsBetweenMovement = 0.5f;
     public float secondsBetweenLaunching = 1.0f;
-    public bool canHoldMoveKey = false;
-    public GameObject Hauler;
+    public float secondsToLoadCar = 1.6f;
+    public bool hasCarLoaded = false;
+    public bool canMove = false;
 
+    public float CarDriveSpeed = 137;
+    public float DriveSpeed = 4500;
+    private Rigidbody2D _rigidbody;
     public GameObject Lanes;
     private Transform[] LanePositions => Lanes.transform.OfType<Transform>().Select(x => x).ToArray();
 
@@ -20,7 +24,7 @@ public class HaulerPlayerScript : MonoBehaviour
     // Input tracking
     private float _timer;
     private float _lastMovementTime;
-    private float _lastLaunchTime;
+    private float _lastActionTime;
     private bool _releasedKey = true;
     
     // audio
@@ -30,9 +34,12 @@ public class HaulerPlayerScript : MonoBehaviour
 
     // car spawner
     public CarSpawner myCarSpawner;
+    private GameObject _maybeLoadedCar;
 
     private void MoveUp()
     {
+        _lastMovementTime = _timer;
+        _releasedKey = false;
         // Up arrow button action
         if (currentLane > 0)
             currentLane -= 1;
@@ -42,6 +49,9 @@ public class HaulerPlayerScript : MonoBehaviour
 
     private void MoveDown()
     {
+        _lastMovementTime = _timer;
+        _releasedKey = false;
+        
         // Down arrow button action
         if (currentLane < 2)
             currentLane += 1;
@@ -59,7 +69,11 @@ public class HaulerPlayerScript : MonoBehaviour
 
     private void LaunchCar()
     {
-        myCarSpawner.LaunchCar();
+        hasCarLoaded = false;
+        _maybeLoadedCar.transform.parent = null;
+        _maybeLoadedCar.AddComponent<Rigidbody2D>();
+        _maybeLoadedCar.GetComponent<Rigidbody2D>().AddForce(-transform.right * CarDriveSpeed);
+        _maybeLoadedCar = null;
         Debug.Log("Launch a car!");
     }
 
@@ -70,45 +84,60 @@ public class HaulerPlayerScript : MonoBehaviour
             if (!_releasedKey && Input.GetAxis("Vertical") == 0)
                 _releasedKey = true;
             
-            if (Input.GetAxis("Vertical") > 0 && CanMove())
-            {
+            if (Input.GetAxis("Vertical") > 0 && CanMove)
                 MoveUp();
-                _lastMovementTime = _timer;
-                _releasedKey = false;
-            }
-            else if (Input.GetAxis("Vertical") < 0 && CanMove())
-            {
+            else if (Input.GetAxis("Vertical") < 0 && CanMove)
                 MoveDown();
-                _lastMovementTime = _timer;
-                _releasedKey = false;
-            }
-            else if (Input.GetButton("Jump") && CanLaunch())
+            else if (Input.GetButton("Jump"))
             {
-                LaunchCar();
-                _lastLaunchTime = _timer;
+                PerformAction();
             }
 
             yield return new WaitForSeconds(inputDelaySeconds);
         }
     }
 
-    private bool CanLaunch()
+    private void PerformAction()
     {
-        return _timer - _lastLaunchTime >= secondsBetweenLaunching;
+        if (CanLaunch)
+        {
+            LaunchCar();
+            _lastActionTime = _timer;
+        }
+        else if (CanLoadCar)
+        {
+            StartCoroutine(LoadCard());
+            _lastActionTime = _timer;
+        }
     }
 
-    private bool CanMove()
+    private IEnumerator LoadCard()
     {
-        return (canHoldMoveKey || !canHoldMoveKey && _releasedKey) && _timer - _lastMovementTime >= secondsBetweenMovement;
+        Debug.Log("Began loading car");
+        _rigidbody.AddForce(transform.right * DriveSpeed);
+        yield return new WaitForSeconds(secondsToLoadCar / 2);
+        _maybeLoadedCar = myCarSpawner.LoadCar(this);
+        _rigidbody.AddForce(-transform.right * DriveSpeed * 2);
+        yield return new WaitForSeconds(secondsToLoadCar / 2);
+        _rigidbody.AddForce(transform.right * DriveSpeed);
+        hasCarLoaded = true;
+        Debug.Log("Finished loading car");
     }
 
-    // Start is called before the first frame update
+    private bool CanLoadCar => !HasCarOnHauler && _timer - _lastActionTime >= secondsToLoadCar;
+    private bool HasCarOnHauler => hasCarLoaded;
+
+    private bool CanLaunch => HasCarOnHauler && _timer - _lastActionTime >= secondsBetweenLaunching;
+ 
+    private bool CanMove => (canMove || !canMove && _releasedKey) && _timer - _lastMovementTime >= secondsBetweenMovement;
+
+    
     void Start()
     {
+        _rigidbody = GetComponent<Rigidbody2D>();
         StartCoroutine(RunGame());
     }
 
-    // Update is called once per frame
     void Update()
     {
         _timer += Time.deltaTime;
