@@ -6,7 +6,7 @@ public class MovingCar : MonoBehaviour
 {
     public AudioPlayer _audioPlayer;
     public bool IsReturn = false;
-    public float CarDriveSpeed = 137;
+    public float CarDriveSpeed = 200;
     public bool NeedsToBeReturned => IsReturn && !_isReturned;
 
     public bool hasPassenger = false;
