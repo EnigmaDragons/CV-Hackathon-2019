@@ -46,6 +46,20 @@ public class Customer : MonoBehaviour
         return (chance <= CustomerReturnRate);
     }
 
+    private void AttachCustomerToCar(GameObject other)
+    {
+        gameObject.transform.SetParent(other.transform);
+        gameObject.GetComponent<Animator>().SetBool("IsCatching", true);
+
+        Destroy(gameObject.GetComponent<Rigidbody2D>());
+
+        // Destroy(gameObject.GetComponent<BoxCollider>());
+        // Destroy(other.GetComponent<BoxCollider>());
+
+        // Destroy(gameObject);
+        // Destroy(other);
+    }
+
     private void OnCarCollide(GameObject other)
     {
         var car = other.GetComponent<MovingCar>();
@@ -58,7 +72,7 @@ public class Customer : MonoBehaviour
         }
 
         GameState.Current.OnCustomerServed();
-        Destroy(gameObject);
-        Destroy(other);
+
+        AttachCustomerToCar(other);
     }
 }
