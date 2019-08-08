@@ -132,6 +132,7 @@ Transform:
   - {fileID: 2217506750067823974}
   - {fileID: 7923348331802584336}
   - {fileID: 6149121835246103706}
+  - {fileID: 6076794753486452095}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -150,13 +151,13 @@ MonoBehaviour:
   inputDelaySeconds: 0.025
   secondsBetweenMovement: 0.5
   secondsBetweenLaunching: 1
+  canHoldMoveKey: 0
   Hauler: {fileID: 0}
   Lanes: {fileID: 5886147957378024864, guid: e8927b3ae83f944829580b398d012704, type: 3}
-  Cars: {fileID: 6091734080063334014, guid: 543fd6a1f24724aa89837e3406c9bdbd, type: 3}
-  carSpeedForceMultiplier: 137
   AudioSource: {fileID: 0}
   CarLaunched: {fileID: 0}
   HaulerMoved: {fileID: 0}
+  myCarSpawner: {fileID: 7272406006141192859}
 --- !u!1 &4730136105761955655
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,6 +286,51 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &7139399557431111826
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6076794753486452095}
+  - component: {fileID: 7272406006141192859}
+  m_Layer: 0
+  m_Name: CarSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6076794753486452095
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7139399557431111826}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4466301982513214002}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7272406006141192859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7139399557431111826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fbfdb4b412984425b905c9f63d84c50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Cars: {fileID: 6091734080063334014, guid: 543fd6a1f24724aa89837e3406c9bdbd, type: 3}
+  carSpeedForceMultiplier: 137
 --- !u!1 &8081911643598509771
 GameObject:
   m_ObjectHideFlags: 0

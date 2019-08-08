@@ -17,10 +17,6 @@ public class HaulerPlayerScript : MonoBehaviour
     // start in middle lane (0,1,2)
     private int currentLane = 1;
 
-    // Car stuff
-    public GameObject Cars;
-    public int carSpeedForceMultiplier = 137;
-
     // Input tracking
     private float _timer;
     private float _lastMovementTime;
@@ -32,23 +28,8 @@ public class HaulerPlayerScript : MonoBehaviour
     public AudioClip CarLaunched;
     public AudioClip HaulerMoved;
 
-    // void StartGame()
-    // {
-    // 	// init game world
-    // 	// init hauler player
-    // 	// init controller
-
-    // 	currentLane = 1;	
-    // }
-
-    private void SpawnCar()
-    {
-        var carPrototype = Cars;
-        GameObject car = Instantiate(carPrototype, transform.position, Quaternion.identity) as GameObject;
-        car.GetComponent<Rigidbody2D>().AddForce(-transform.right * carSpeedForceMultiplier);
-
-        AudioSource.PlayOneShot(CarLaunched);
-    }
+    // car spawner
+    public CarSpawner myCarSpawner;
 
     private void MoveUp()
     {
@@ -78,8 +59,8 @@ public class HaulerPlayerScript : MonoBehaviour
 
     private void LaunchCar()
     {
-        SpawnCar();
-        Debug.Log("Spawn a car!");
+        myCarSpawner.LaunchCar();
+        Debug.Log("Launch a car!");
     }
 
     private IEnumerator RunGame()

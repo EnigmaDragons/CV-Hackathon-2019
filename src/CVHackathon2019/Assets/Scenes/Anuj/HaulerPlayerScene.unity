@@ -337,6 +337,58 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4466301982513214002, guid: 2fa7d2efed50044cb994d7c54e963c36,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4466301982513214005, guid: 2fa7d2efed50044cb994d7c54e963c36,
+        type: 3}
+      propertyPath: Cars
+      value: 
+      objectReference: {fileID: 6091734080063334014, guid: 543fd6a1f24724aa89837e3406c9bdbd,
+        type: 3}
+    - target: {fileID: 4466301982513214005, guid: 2fa7d2efed50044cb994d7c54e963c36,
+        type: 3}
+      propertyPath: Hauler
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4466301982513214005, guid: 2fa7d2efed50044cb994d7c54e963c36,
+        type: 3}
+      propertyPath: CustomerSpawner
+      value: 
+      objectReference: {fileID: 2877866834280461763, guid: 41a0d0edc3b8f4b449880ad43e8131bc,
+        type: 3}
+    - target: {fileID: 4466301982513214005, guid: 2fa7d2efed50044cb994d7c54e963c36,
+        type: 3}
+      propertyPath: AudioSource
+      value: 
+      objectReference: {fileID: 20823415}
+    - target: {fileID: 4466301982513214005, guid: 2fa7d2efed50044cb994d7c54e963c36,
+        type: 3}
+      propertyPath: AudioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0e6589d90e1112f42821afa8a9fb6e5f, type: 3}
+    - target: {fileID: 4466301982513214005, guid: 2fa7d2efed50044cb994d7c54e963c36,
+        type: 3}
+      propertyPath: CarLaunched
+      value: 
+      objectReference: {fileID: 8300000, guid: 0e6589d90e1112f42821afa8a9fb6e5f, type: 3}
+    - target: {fileID: 4466301982513214005, guid: 2fa7d2efed50044cb994d7c54e963c36,
+        type: 3}
+      propertyPath: HaulerMoved
+      value: 
+      objectReference: {fileID: 8300000, guid: 284141a50be209b4bb0247db329c118c, type: 3}
+    - target: {fileID: 7923348331802584336, guid: 2fa7d2efed50044cb994d7c54e963c36,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6149121835246103706, guid: 2fa7d2efed50044cb994d7c54e963c36,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 642347818878554191, guid: 2fa7d2efed50044cb994d7c54e963c36,
         type: 3}
       propertyPath: m_Name
@@ -422,48 +474,17 @@ PrefabInstance:
       propertyPath: Lanes
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 4466301982513214002, guid: 2fa7d2efed50044cb994d7c54e963c36,
+    - target: {fileID: 6076794753486452095, guid: 2fa7d2efed50044cb994d7c54e963c36,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 4466301982513214005, guid: 2fa7d2efed50044cb994d7c54e963c36,
+    - target: {fileID: 7272406006141192859, guid: 2fa7d2efed50044cb994d7c54e963c36,
         type: 3}
       propertyPath: Cars
       value: 
       objectReference: {fileID: 6091734080063334014, guid: 543fd6a1f24724aa89837e3406c9bdbd,
         type: 3}
-    - target: {fileID: 4466301982513214005, guid: 2fa7d2efed50044cb994d7c54e963c36,
-        type: 3}
-      propertyPath: Hauler
-      value: 
-      objectReference: {fileID: 1463171935}
-    - target: {fileID: 4466301982513214005, guid: 2fa7d2efed50044cb994d7c54e963c36,
-        type: 3}
-      propertyPath: CustomerSpawner
-      value: 
-      objectReference: {fileID: 2877866834280461763, guid: 41a0d0edc3b8f4b449880ad43e8131bc,
-        type: 3}
-    - target: {fileID: 4466301982513214005, guid: 2fa7d2efed50044cb994d7c54e963c36,
-        type: 3}
-      propertyPath: AudioSource
-      value: 
-      objectReference: {fileID: 20823415}
-    - target: {fileID: 4466301982513214005, guid: 2fa7d2efed50044cb994d7c54e963c36,
-        type: 3}
-      propertyPath: AudioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 0e6589d90e1112f42821afa8a9fb6e5f, type: 3}
-    - target: {fileID: 4466301982513214005, guid: 2fa7d2efed50044cb994d7c54e963c36,
-        type: 3}
-      propertyPath: CarLaunched
-      value: 
-      objectReference: {fileID: 8300000, guid: 0e6589d90e1112f42821afa8a9fb6e5f, type: 3}
-    - target: {fileID: 4466301982513214005, guid: 2fa7d2efed50044cb994d7c54e963c36,
-        type: 3}
-      propertyPath: HaulerMoved
-      value: 
-      objectReference: {fileID: 8300000, guid: 284141a50be209b4bb0247db329c118c, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fa7d2efed50044cb994d7c54e963c36, type: 3}
 --- !u!4 &205487029 stripped
@@ -541,12 +562,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41a0d0edc3b8f4b449880ad43e8131bc, type: 3}
---- !u!1 &1463171935 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7487925579974080040, guid: 2fa7d2efed50044cb994d7c54e963c36,
-    type: 3}
-  m_PrefabInstance: {fileID: 205487028}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4000974619696145449
 PrefabInstance:
   m_ObjectHideFlags: 0
