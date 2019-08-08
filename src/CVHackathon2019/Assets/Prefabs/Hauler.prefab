@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SecondsToLoadCar: 1.6
-  DriveSpeed: 137
+  DriveSpeed: 4500
   Lanes: {fileID: 5886147957378024864, guid: e8927b3ae83f944829580b398d012704, type: 3}
   CarSpawner: {fileID: 7272406006141192859}
   AudioClips: {fileID: 6086005869308607291}
