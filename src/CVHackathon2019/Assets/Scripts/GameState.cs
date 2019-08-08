@@ -17,7 +17,7 @@ public sealed class GameState
     }
     
     public static GameState Current = new GameState();
-    public void Reset() => Current = new GameState();
+    public static void Reset() => Current = new GameState();
     private GameState() {}
 }
 

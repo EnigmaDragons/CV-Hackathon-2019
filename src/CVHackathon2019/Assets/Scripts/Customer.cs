@@ -8,6 +8,8 @@ public class Customer : MonoBehaviour
     public int HundrethsYVariance = 80;
     
     public int CustomerReturnRate = 8;
+    private bool _isDone;
+    
     void Start()
     {
         var pos = gameObject.transform.position;
@@ -15,6 +17,15 @@ public class Customer : MonoBehaviour
         var newY = pos.y + modifier; 
         gameObject.transform.position = new Vector3(pos.x, newY, pos.z);
         GetComponent<Rigidbody2D>().AddForce(new Vector2(Rng.Int(MinSpeed, MaxSpeed), 0));
+    }
+
+    void Update()
+    {
+        if (!_isDone && GameState.Current.IsGameOver)
+        {
+            _isDone = true;
+            Destroy(gameObject, 1f);
+        }
     }
     
     private void OnCollisionEnter(Collision other) => HandleCollision(other.gameObject);
