@@ -4,7 +4,6 @@ using UnityEngine;
 public class TransitionToNextLevel : MonoBehaviour
 {
     public float DelayBeforeNextLevel = 2;
-    public LevelConfig[] Levels;
     
     void Start()
     {
