@@ -144,4 +144,5 @@ MonoBehaviour:
   AudioSource: {fileID: 8751343533192595763}
   CarLaunched: {fileID: 8300000, guid: 0e6589d90e1112f42821afa8a9fb6e5f, type: 3}
   HaulerMoved: {fileID: 8300000, guid: 284141a50be209b4bb0247db329c118c, type: 3}
+  HaulerLoaded: {fileID: 8300000, guid: 05e75b04f8fd04749bef0d3ec1247777, type: 3}
   CustomerServed: {fileID: 8300000, guid: fdf0fb4db8ab76c4e9f3dd882105c54c, type: 3}
