@@ -2,7 +2,7 @@
 
 namespace Assets.Scripts.Gameplay
 {
-    class UnclaimedCarGameOver: MonoBehaviour
+    public class UnclaimedCarGameOver: MonoBehaviour
     {
         private void OnCollisionEnter(Collision other) => HandleCollision(other.gameObject);
         private void OnCollisionEnter2D(Collision2D other) => HandleCollision(other.gameObject);
@@ -12,15 +12,14 @@ namespace Assets.Scripts.Gameplay
         private void HandleCollision(GameObject other)
         {
             const int carLayer = 8;
-            Debug.Log($"layer = {other.layer}");
             if (other.layer == carLayer)
             {
                 var car = other.GetComponent<MovingCar>();
-                if (!car.hasPassenger) SetGameOver();
+                if (!car.hasPassenger) OnunclaimedCar();
             }
         }
 
-        private void SetGameOver()
+        private void OnunclaimedCar()
         {
             GameState.Current.DecreaseStarRating();
         }

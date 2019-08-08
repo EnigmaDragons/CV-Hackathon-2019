@@ -9,7 +9,7 @@ public class MovingCar : MonoBehaviour
 
     public bool hasPassenger = false;
     private bool _isReturned = false;
-    
+
     public Sprite[] carSprites;
 
     void Start()
@@ -22,7 +22,6 @@ public class MovingCar : MonoBehaviour
         transform.parent = null;
         gameObject.AddComponent<Rigidbody2D>();
         GetComponent<Rigidbody2D>().AddForce(-transform.right * CarDriveSpeed);
-        //Debug.Log("Launch a car!");
     }
 
     public void ReturnCar()
@@ -30,12 +29,33 @@ public class MovingCar : MonoBehaviour
         IsReturn = true;
         var rigidBody = GetComponent<Rigidbody2D>();
         var localScale = transform.localScale;
-        transform.localScale = new Vector3(localScale.x * -1, localScale.y, localScale.z); ;
-        rigidBody.AddForce(transform.right * CarDriveSpeed * 2);
+        transform.localScale = new Vector3(localScale.x * -1, localScale.y, localScale.z);
+        ;
+        rigidBody.AddForce(transform.right * (CarDriveSpeed * 1.3f));
     }
 
     public void SetReturnHandled()
     {
         _isReturned = true;
+    }
+
+    private void OnCollisionEnter(Collision other) => HandleCollision(other.gameObject);
+    private void OnCollisionEnter2D(Collision2D other) => HandleCollision(other.gameObject);
+    private void OnTriggerEnter(Collider other) => HandleCollision(other.gameObject);
+    private void OnTriggerEnter2D(Collider2D other) => HandleCollision(other.gameObject);
+
+    private void HandleCollision(GameObject other)
+    {
+        const int carLayer = 8;
+        if (other.layer == carLayer)
+            OnCrash(other);
+    }
+
+    private void OnCrash(GameObject other)
+    {
+        Debug.Log("Crashed!");
+        GameState.Current.DecreaseStarRating();
+        Destroy(other);
+        Destroy(gameObject);
     }
 }

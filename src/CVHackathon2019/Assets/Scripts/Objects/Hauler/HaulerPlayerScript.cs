@@ -112,6 +112,7 @@ public class HaulerPlayerScript : MonoBehaviour
     public void Return(MovingCar car)
     {
         _maybeLoadedCar = car;
+        car.SetReturnHandled();
         StartCoroutine(ReturnCarToGarage());
     }
 
