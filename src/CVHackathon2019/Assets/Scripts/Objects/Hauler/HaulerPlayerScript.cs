@@ -11,7 +11,7 @@ public class HaulerPlayerScript : MonoBehaviour
     
     public bool HasCar => _maybeLoadedCar != null;
     public CarSpawner CarSpawner;
-    public AudioClips AudioClips;
+    public AudioPlayer _audioPlayer;
     public HaulerInputHandler Inputs;
 
     private int _currentLane = 1;
@@ -45,7 +45,7 @@ public class HaulerPlayerScript : MonoBehaviour
         if (_currentLane > 0)
         {
             _currentLane -= 1;
-            AudioClips.PlayHaulerMoved();
+            _audioPlayer.PlayHaulerMoved();
         }
 
         UpdatePosition();
@@ -56,7 +56,7 @@ public class HaulerPlayerScript : MonoBehaviour
         if (_currentLane < 2)
         {
             _currentLane += 1;
-            AudioClips.PlayHaulerMoved();
+            _audioPlayer.PlayHaulerMoved();
         }
 
         UpdatePosition();
@@ -71,7 +71,7 @@ public class HaulerPlayerScript : MonoBehaviour
 
     private void LaunchCar()
     {
-        AudioClips.PlayCarLaunched();
+        _audioPlayer.PlayCarLaunched();
         _maybeLoadedCar.Launch();
         _maybeLoadedCar = null;
     }
