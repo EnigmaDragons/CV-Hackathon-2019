@@ -5,9 +5,10 @@ using Objects.Hauler;
 
 public class HaulerPlayerScript : MonoBehaviour
 {
-    public float SecondsToLoadCar = 1.6f;
-    public float DriveSpeed = 4500;
     public GameObject Lanes;
+    public float MinX = 3.4f;
+    public float MaxX = 16f;
+    public float NewDriveSpeed = 60;
     
     public bool HasCar => _maybeLoadedCar != null;
     public CarSpawner CarSpawner;
@@ -16,18 +17,38 @@ public class HaulerPlayerScript : MonoBehaviour
 
     private int _currentLane = 1;
     private MovingCar _maybeLoadedCar;
-    private Rigidbody2D _rigidbody;
     private Vector3 _offset;
     private Transform[] LanePositions => Lanes.transform.OfType<Transform>().Select(x => x).ToArray();
-  
+    private float _velocity;
+    
     public void Start()
     {
         _offset = gameObject.transform.localPosition;
-        _rigidbody = GetComponent<Rigidbody2D>();
         Inputs.Init(this);
         UpdatePosition();
     }
-    
+
+    public void Update()
+    {
+        var currentVelocity = _velocity;
+        var pos = transform.position;
+        var newX = pos.x + currentVelocity * 0.1f; 
+        transform.position = new Vector3(newX, pos.y, pos.z);
+        
+        if (IsMoving && pos.x < MinX || pos.x > MaxX)
+        {
+            SetVelocity(0);
+
+            var clampedX = Mathf.Clamp(newX, MinX, MaxX);
+            transform.position = new Vector3(clampedX, pos.y, pos.z);
+        }
+    }
+
+    private void SetVelocity(float velocity)
+    {
+        _velocity = velocity;
+    }
+
     public bool IsLoading { get; private set; }
 
     public void OnInput(HaulerCommands cmd)
@@ -66,7 +87,6 @@ public class HaulerPlayerScript : MonoBehaviour
     {
         var lane = LanePositions[_currentLane];
         transform.position = new Vector3(transform.position.x, lane.position.y + _offset.y, lane.position.z + _offset.z);
-        //Debug.Log("Lane = " + _currentLane);
     }
 
     private void LaunchCar()
@@ -84,29 +104,16 @@ public class HaulerPlayerScript : MonoBehaviour
             StartCoroutine(LoadCar());
     }
 
-    private IEnumerator LoadCar()
+    private IEnumerator DriveOutOfGarage()
     {
-        _audioPlayer.PlayHaulerLoaded();
-        Debug.Log("Began loading car");
-        IsLoading = true;
-        yield return DriveIntoGarage();
-        _maybeLoadedCar = CarSpawner.LoadCar(this);
-        yield return DriveOutOfGarage();
-        _rigidbody.AddForce(transform.right * DriveSpeed);
-        IsLoading = false;
-        Debug.Log("Finished loading car");
+        SetVelocity(-NewDriveSpeed);
+        yield return WaitForReachedDestination();
     }
 
-    private object DriveOutOfGarage()
+    private IEnumerator DriveIntoGarage()
     {
-        _rigidbody.AddForce(-transform.right * DriveSpeed * 2);
-        return new WaitForSeconds(SecondsToLoadCar / 2);
-    }
-
-    private object DriveIntoGarage()
-    {
-        _rigidbody.AddForce(transform.right * DriveSpeed);
-        return new WaitForSeconds(SecondsToLoadCar / 2);
+        SetVelocity(NewDriveSpeed);
+        yield return WaitForReachedDestination();
     }
 
     public void Return(MovingCar car)
@@ -115,22 +122,58 @@ public class HaulerPlayerScript : MonoBehaviour
         car.SetReturnHandled();
         StartCoroutine(ReturnCarToGarage());
     }
+    
+    private IEnumerator LoadCar()
+    {
+        _audioPlayer.PlayHaulerLoaded();
+        IsLoading = true;
+        
+        yield return DriveIntoGarage();
+        
+        _maybeLoadedCar = CarSpawner.LoadCar(this);
+        
+        yield return DriveOutOfGarage();
+        
+        IsLoading = false;
+    }
+
+    private IEnumerator WaitForReachedDestination()
+    {
+        while (IsMoving)
+            yield return new WaitForSeconds(0.1f);
+    }
+
+    private bool IsMoving => _velocity > 0 || _velocity < 0;
 
     private IEnumerator ReturnCarToGarage()
     {
-        Debug.Log("Began loading returned car");
         IsLoading = true;
         yield return new WaitForSeconds(0.16f);
         DestroyImmediate(_maybeLoadedCar.GetComponent<Rigidbody2D>());
         DestroyImmediate(_maybeLoadedCar.GetComponent<Collider2D>());
         _maybeLoadedCar.transform.parent = transform;
+        
         yield return DriveIntoGarage();
+        
         _maybeLoadedCar.transform.parent = null;
         DestroyImmediate(_maybeLoadedCar);
         _maybeLoadedCar = CarSpawner.LoadCar(this);
+        
         yield return DriveOutOfGarage();
-        _rigidbody.AddForce(transform.right * DriveSpeed);
+        
         IsLoading = false;
-        Debug.Log("Finished loading car");
+    }
+    
+    private void OnCollisionEnter(Collision other) => HandleCollision(other.gameObject);
+    private void OnCollisionEnter2D(Collision2D other) => HandleCollision(other.gameObject);
+    private void OnTriggerEnter(Collider other) => HandleCollision(other.gameObject);
+    private void OnTriggerEnter2D(Collider2D other) => HandleCollision(other.gameObject);
+
+    private void HandleCollision(GameObject o)
+    {
+        if (o.layer == 14)
+        {
+            SetVelocity(0);
+        }
     }
 }

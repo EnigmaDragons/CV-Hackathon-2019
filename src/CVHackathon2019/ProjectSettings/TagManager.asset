@@ -20,7 +20,7 @@ TagManager:
   - DestroyWalls
   - ReturnCarGameOver
   - Hauler
-  - 
+  - HaulerBoundary
   - 
   - 
   - 
