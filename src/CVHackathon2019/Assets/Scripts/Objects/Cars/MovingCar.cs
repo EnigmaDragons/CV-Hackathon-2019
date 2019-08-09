@@ -6,7 +6,7 @@ public class MovingCar : MonoBehaviour
 {
     public AudioPlayer _audioPlayer;
     public bool IsReturn = false;
-    public float CarDriveSpeed = 200;
+    public float CarDriveSpeed = 137;
     public bool NeedsToBeReturned => IsReturn && !_isReturned;
 
     public bool hasPassenger = false;
@@ -41,7 +41,7 @@ public class MovingCar : MonoBehaviour
         
         var localScale = transform.localScale;
         transform.localScale = new Vector3(localScale.x * -1, localScale.y, localScale.z);
-        rigidBody.AddForce(transform.right * (CarDriveSpeed * 1.3f));
+        rigidBody.AddForce(transform.right * (CarDriveSpeed * 2.0f));
     }
 
     public void SetReturnHandled()

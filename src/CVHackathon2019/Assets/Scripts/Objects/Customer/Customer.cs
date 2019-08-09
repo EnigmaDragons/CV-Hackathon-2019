@@ -74,6 +74,8 @@ public class Customer : MonoBehaviour
     public void Despawn()
     {
         _audioPlayer.PlayAngryCustomer();
+        Destroy(gameObject.GetComponent<Rigidbody2D>());
+        Destroy(gameObject.GetComponent<Collider2D>());
         Destroy(gameObject, 3f);
     }
 }
