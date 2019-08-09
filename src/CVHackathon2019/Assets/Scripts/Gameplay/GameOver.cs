@@ -9,7 +9,10 @@ public class GameOver : MonoBehaviour
     
     private void SetGameOver(Customer customer)
     {
-        customer.Despawn();
-        GameState.Current.DecreaseStarRating();
+        if (customer != null)
+        {
+            customer.Despawn();
+            GameState.Current.DecreaseStarRating();
+        }
     }
 }

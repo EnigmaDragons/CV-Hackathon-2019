@@ -152,9 +152,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54ab4c40bb72e4e98bdaf42775df0bcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SecondsToLoadCar: 0.9
-  DriveSpeed: 1400
   Lanes: {fileID: 5886147957378024864, guid: e8927b3ae83f944829580b398d012704, type: 3}
+  MinX: 3.4
+  MaxX: 16
+  NewDriveSpeed: 6
   CarSpawner: {fileID: 7272406006141192859}
   _audioPlayer: {fileID: 7142409738788199584}
   Inputs: {fileID: 3850038203055230562}
