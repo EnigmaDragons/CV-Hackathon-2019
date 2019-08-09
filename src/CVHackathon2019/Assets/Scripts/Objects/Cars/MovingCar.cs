@@ -30,11 +30,17 @@ public class MovingCar : MonoBehaviour
 
     public void ReturnCar()
     {
+        if (IsReturn)
+            return;
+        
         IsReturn = true;
+        
         var rigidBody = GetComponent<Rigidbody2D>();
+        if (rigidBody == null)
+            return;
+        
         var localScale = transform.localScale;
         transform.localScale = new Vector3(localScale.x * -1, localScale.y, localScale.z);
-        ;
         rigidBody.AddForce(transform.right * (CarDriveSpeed * 1.3f));
     }
 

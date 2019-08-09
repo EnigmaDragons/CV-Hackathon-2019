@@ -25,6 +25,9 @@ public class AcceptReturns : MonoBehaviour
     private void OnCarCollide(GameObject other)
     {
         var car = other.GetComponent<MovingCar>();
+        if (car == null)
+            return;
+        
         if (car.NeedsToBeReturned && Hauler.HasCar)
         {
             Destroy(car);
