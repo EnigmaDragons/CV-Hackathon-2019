@@ -6,6 +6,7 @@ public class Customer : MonoBehaviour
     public int HundrethsYVariance = 80;
     public AudioPlayer _audioPlayer;
     private bool _isDone;
+    private Rigidbody2D _body;
     
     void Start()
     {
@@ -13,7 +14,8 @@ public class Customer : MonoBehaviour
         var modifier = Rng.Int(-HundrethsYVariance, HundrethsYVariance) * 0.01f;
         var newY = pos.y + modifier; 
         gameObject.transform.position = new Vector3(pos.x, newY, pos.z);
-        GetComponent<Rigidbody2D>().AddForce(new Vector2(GameState.Current.CustomerSpeed, 0));
+        _body = GetComponent<Rigidbody2D>();
+        _body.AddForce(new Vector2(GameState.Current.CustomerSpeed, 0));
     }
 
     void Update()
@@ -58,6 +60,9 @@ public class Customer : MonoBehaviour
         if (CustomerReturnsCar())
         {
             car.ReturnCar();
+            var scale = transform.localScale;
+            transform.localScale = new Vector3(scale.x * -1, scale.y, scale.z);
+            _body.AddForce(-transform.right * GameState.Current.CustomerSpeed * 2);
             return;
         }
         _audioPlayer.PlayCustomerServed();
@@ -68,6 +73,7 @@ public class Customer : MonoBehaviour
 
     public void Despawn()
     {
-        Destroy(gameObject);
+        _audioPlayer.PlayAngryCustomer();
+        Destroy(gameObject, 3f);
     }
 }

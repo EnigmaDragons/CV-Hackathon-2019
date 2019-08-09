@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e71a60f7636a2a24eb2f04d2a4875fee, type: 3}
-  m_Name: Level1
+  m_Name: Level4
   m_EditorClassIdentifier: 
-  CustomerSpeed: 20
-  CustomerSpawnInterval: 2.75
-  CarReturnRate: 10
-  NumCustomersRequired: 6
+  CustomerSpeed: 24
+  CustomerSpawnInterval: 2
+  CarReturnRate: 16
+  NumCustomersRequired: 12

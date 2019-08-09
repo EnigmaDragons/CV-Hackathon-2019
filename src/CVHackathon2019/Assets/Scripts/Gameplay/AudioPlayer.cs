@@ -8,6 +8,8 @@ public class AudioPlayer : MonoBehaviour
     public AudioClip HaulerLoaded;
     public AudioClip CustomerServed;
     public AudioClip CarCrash;
+    public AudioClip AngryCustomer;
+    public AudioClip UnclaimedCar;
 
     public void PlayHaulerMoved()
     {
@@ -32,5 +34,15 @@ public class AudioPlayer : MonoBehaviour
     public void PlayCarCrash()
     {
         AudioSource.PlayOneShot(CarCrash);
+    }
+
+    public void PlayAngryCustomer()
+    {
+        AudioSource.PlayOneShot(AngryCustomer);
+    }
+
+    public void PlayUnclaimedCar()
+    {
+        AudioSource.PlayOneShot(UnclaimedCar);
     }
 }
