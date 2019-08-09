@@ -115,7 +115,6 @@ GameObject:
   - component: {fileID: 8913052419146078978}
   - component: {fileID: 3235735183662404239}
   - component: {fileID: 4881974073728434433}
-  - component: {fileID: 8892954816652342572}
   - component: {fileID: 3983098964621430491}
   m_Layer: 5
   m_Name: Star (3)
@@ -142,7 +141,6 @@ RectTransform:
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -252.99982, y: 50}
   m_SizeDelta: {x: 72, y: 72}
-
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8913052419146078978
 CanvasRenderer:
@@ -195,21 +193,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MinStars: 2
---- !u!111 &8892954816652342572
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 339088570589295508}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: d9f310cd9755e4b64a934ec348c74c3b, type: 2}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!95 &3983098964621430491
 Animator:
   serializedVersion: 3
@@ -241,7 +224,6 @@ GameObject:
   - component: {fileID: 974840312773819292}
   - component: {fileID: 939792398305242746}
   - component: {fileID: 7353810465666198057}
-  - component: {fileID: 2674038057841096431}
   - component: {fileID: 281100191754786320}
   m_Layer: 5
   m_Name: Star (2)
@@ -320,21 +302,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MinStars: 3
---- !u!111 &2674038057841096431
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 753553984475212455}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: d9f310cd9755e4b64a934ec348c74c3b, type: 2}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!95 &281100191754786320
 Animator:
   serializedVersion: 3
@@ -366,7 +333,6 @@ GameObject:
   - component: {fileID: 4110297860008739255}
   - component: {fileID: 7336841840007903574}
   - component: {fileID: 7446254187316781474}
-  - component: {fileID: 2602805846677439165}
   - component: {fileID: 8993935557892668491}
   m_Layer: 5
   m_Name: Star (1)
@@ -445,21 +411,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MinStars: 4
---- !u!111 &2602805846677439165
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 806666935051362209}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: d9f310cd9755e4b64a934ec348c74c3b, type: 2}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!95 &8993935557892668491
 Animator:
   serializedVersion: 3
@@ -491,7 +442,6 @@ GameObject:
   - component: {fileID: 4104518516313299604}
   - component: {fileID: 6954374143063944403}
   - component: {fileID: 7239820783173665757}
-  - component: {fileID: 2089010909887771106}
   - component: {fileID: 3920524530129869440}
   m_Layer: 5
   m_Name: Star
@@ -570,21 +520,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MinStars: 5
---- !u!111 &2089010909887771106
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2435738912905100008}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: d9f310cd9755e4b64a934ec348c74c3b, type: 2}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!95 &3920524530129869440
 Animator:
   serializedVersion: 3
@@ -616,7 +551,6 @@ GameObject:
   - component: {fileID: 3117340691563680833}
   - component: {fileID: 1692278971153734868}
   - component: {fileID: 5899748909119823958}
-  - component: {fileID: 6851792662647352705}
   - component: {fileID: 1200399284039658330}
   m_Layer: 5
   m_Name: Star (4)
@@ -695,21 +629,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MinStars: 1
---- !u!111 &6851792662647352705
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6962812989579974433}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: d9f310cd9755e4b64a934ec348c74c3b, type: 2}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!95 &1200399284039658330
 Animator:
   serializedVersion: 3
