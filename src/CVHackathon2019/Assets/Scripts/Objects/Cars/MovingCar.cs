@@ -8,6 +8,7 @@ public class MovingCar : MonoBehaviour
     public float CarDriveSpeed = 137;
     public bool NeedsToBeReturned => IsReturn && !_isReturned;
     public float SafeReturnX = 10f;
+    public GameObject Explosion;
 
     public bool hasPassenger = false;
     private bool _isReturned = false;
@@ -72,16 +73,17 @@ public class MovingCar : MonoBehaviour
     private void OnCrash(GameObject other)
     {
         _audioPlayer.PlayCarCrash();
+        Instantiate(Explosion, transform);
         Debug.Log("Crashed!");
 
         MoneyScoreCalculators.MinusMoneyCarsCrash();
         
         Destroy(GetComponent<Rigidbody2D>());
         Destroy(GetComponent<BoxCollider2D>());
-        Destroy(GetComponent<SpriteRenderer>());
         Destroy(other.GetComponent<Rigidbody2D>());
         Destroy(other.GetComponent<BoxCollider2D>());
-        Destroy(other.GetComponent<SpriteRenderer>());
+        Destroy(GetComponent<SpriteRenderer>(), 0.4f);
+        Destroy(other.GetComponent<SpriteRenderer>(), 0.4f);
         Destroy(other, 2f);
         Destroy(gameObject, 2f);
     }

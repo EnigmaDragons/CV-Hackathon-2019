@@ -97,6 +97,9 @@ MonoBehaviour:
   _audioPlayer: {fileID: 6772058742112422182}
   IsReturn: 0
   CarDriveSpeed: 200
+  SafeReturnX: 10
+  Explosion: {fileID: 2659667829026799293, guid: 0f2ba686d9887fc45b08283060e98765,
+    type: 3}
   hasPassenger: 0
   carSprites:
   - {fileID: 21300000, guid: 8ee70c41ffe06a045a097698742561bc, type: 3}
@@ -161,11 +164,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4793996257526355564}
     m_Modifications:
-    - target: {fileID: 3696106668546345696, guid: ec388aaa988c025489670ae451f7c597,
-        type: 3}
-      propertyPath: m_Name
-      value: GameAudio
-      objectReference: {fileID: 0}
     - target: {fileID: 7793987642135822529, guid: ec388aaa988c025489670ae451f7c597,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -220,6 +218,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3696106668546345696, guid: ec388aaa988c025489670ae451f7c597,
+        type: 3}
+      propertyPath: m_Name
+      value: GameAudio
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec388aaa988c025489670ae451f7c597, type: 3}
