@@ -9,12 +9,16 @@ public class ReturnCarGameOver : MonoBehaviour
 
     private void HandleCollision(GameObject other)
     {
-        const int carLayer = 8;
-        //Debug.Log($"layer = {other.layer}");
-        if (other.layer == carLayer)
+        if (GameState.Current.IsGameInProgres)
         {
-            var car = other.GetComponent<MovingCar>();
-            if (car.IsReturn) SetGameOver();
+            const int carLayer = 8;
+            //Debug.Log($"layer = {other.layer}");
+            if (other.layer == carLayer)
+            {
+                var car = other.GetComponent<MovingCar>();
+                if (car.IsReturn)
+                    SetGameOver();
+            }
         }
     }
 
