@@ -95,7 +95,7 @@ public sealed class GameState
         Current._levelIndex++;
         Current.Outcome = LevelOutcome.Incomplete;
         Current.NumCustomersServed = 0;
-        Current.StarRatings = 5;
+        Current.StarRatings+= 1;
         Current.CarReturnRate = Current._levelConfig.CarReturnRate;
         Debug.Log("Next Level! Index: " + Current._levelIndex);
     }

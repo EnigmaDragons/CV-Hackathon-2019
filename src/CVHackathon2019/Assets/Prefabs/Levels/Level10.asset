@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e71a60f7636a2a24eb2f04d2a4875fee, type: 3}
   m_Name: Level10
   m_EditorClassIdentifier: 
-  CustomerSpeed: 20
-  CustomerSpawnInterval: 0
-  CarReturnRate: 0
-  NumCustomersRequired: 0
+  CustomerSpeed: 10
+  CustomerSpawnInterval: 2
+  CarReturnRate: 50
+  NumCustomersRequired: 10
