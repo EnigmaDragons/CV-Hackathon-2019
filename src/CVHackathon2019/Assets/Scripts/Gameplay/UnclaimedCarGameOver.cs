@@ -2,7 +2,7 @@
 
 namespace Assets.Scripts.Gameplay
 {
-    public class UnclaimedCarGameOver: MonoBehaviour
+    public class UnclaimedCarGameOver : MonoBehaviour
     {
         public AudioPlayer _audioPlayer;
 
@@ -13,11 +13,15 @@ namespace Assets.Scripts.Gameplay
 
         private void HandleCollision(GameObject other)
         {
-            const int carLayer = 8;
-            if (other.layer == carLayer)
+            if (GameState.Current.IsGameInProgres)
             {
-                var car = other.GetComponent<MovingCar>();
-                if (!car.hasPassenger) OnunclaimedCar();
+                const int carLayer = 8;
+                if (other.layer == carLayer)
+                {
+                    var car = other.GetComponent<MovingCar>();
+                    if (!car.hasPassenger)
+                        OnunclaimedCar();
+                }
             }
         }
 
