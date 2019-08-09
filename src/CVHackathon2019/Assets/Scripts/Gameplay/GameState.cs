@@ -4,14 +4,16 @@ using UnityEngine;
 
 public sealed class GameState
 {
+    public const int _maxStarRatings = 5;
     private static bool _initialied = false;
+    
     private int _levelIndex;
     private readonly LevelObj _levelsObj;
     private LevelConfig _levelConfig => _levelsObj?.Levels[_levelIndex];
 
     public int Level => _levelIndex + 1;
     public int NumCustomersServed { get; private set; }
-    public int StarRatings { get; private set; } = 5;
+    public int StarRatings { get; private set; } = _maxStarRatings;
 
     public LevelOutcome Outcome { get; private set; } = LevelOutcome.Incomplete;
     public bool IsGameOver => Outcome == LevelOutcome.GameOver;
@@ -102,7 +104,7 @@ public sealed class GameState
         Current._levelIndex++;
         Current.Outcome = LevelOutcome.Incomplete;
         Current.NumCustomersServed = 0;
-        Current.StarRatings += 1;
+        Current.StarRatings = Math.Min(_maxStarRatings, Current.StarRatings + 1);
         Current.CarReturnRate = Current._levelConfig.CarReturnRate;
         Debug.Log("Next Level! Index: " + Current._levelIndex);
     }
