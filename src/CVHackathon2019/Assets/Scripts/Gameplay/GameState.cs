@@ -28,16 +28,20 @@ public sealed class GameState
 
     public void DecreaseStarRating()
     {
-        StarRatings -= 1;
-        if (StarRatings > 0) return;
+        if (IsGameInProgres)
+        {
+            StarRatings -= 1;
+            if (StarRatings > 0)
+                return;
 
-        Outcome = LevelOutcome.GameOver;
-        Debug.Log("Game Over");
+            Outcome = LevelOutcome.GameOver;
+            Debug.Log("Game Over");
+        }
     }
 
     public void SetLevelOutcome(LevelOutcome outcome)
     {
-        if (Outcome == LevelOutcome.Incomplete)
+        if (IsGameInProgres)
         {
             Debug.Log($"{outcome}");
             Outcome = outcome;
@@ -46,12 +50,15 @@ public sealed class GameState
 
     public void OnCustomerServed()
     {
-        NumCustomersServed++;
-        if (NumCustomersServed >= NumCustomersRequired)
-            Outcome = LevelOutcome.Complete;
-        Debug.Log($"{NumCustomersServed} / {NumCustomersRequired}");
+        if (IsGameInProgres)
+        {
+            NumCustomersServed++;
+            if (NumCustomersServed >= NumCustomersRequired)
+                Outcome = LevelOutcome.Complete;
+            Debug.Log($"{NumCustomersServed} / {NumCustomersRequired}");
 
-        MoneyScoreCalculators.PlusMoneyCarDelivered();
+            MoneyScoreCalculators.PlusMoneyCarDelivered();
+        }
     }
 
     public static GameState Current = new GameState();
@@ -95,7 +102,7 @@ public sealed class GameState
         Current._levelIndex++;
         Current.Outcome = LevelOutcome.Incomplete;
         Current.NumCustomersServed = 0;
-        Current.StarRatings+= 1;
+        Current.StarRatings += 1;
         Current.CarReturnRate = Current._levelConfig.CarReturnRate;
         Debug.Log("Next Level! Index: " + Current._levelIndex);
     }
