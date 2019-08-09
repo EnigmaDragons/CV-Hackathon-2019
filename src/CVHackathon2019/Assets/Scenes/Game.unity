@@ -177,16 +177,6 @@ PrefabInstance:
       propertyPath: _audioPlayer
       value: 
       objectReference: {fileID: 1986188327}
-    - target: {fileID: 4466301982513214005, guid: 2fa7d2efed50044cb994d7c54e963c36,
-        type: 3}
-      propertyPath: SecondsToLoadCar
-      value: 0.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 4466301982513214005, guid: 2fa7d2efed50044cb994d7c54e963c36,
-        type: 3}
-      propertyPath: DriveSpeed
-      value: 1400
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fa7d2efed50044cb994d7c54e963c36, type: 3}
 --- !u!1 &806563561 stripped
