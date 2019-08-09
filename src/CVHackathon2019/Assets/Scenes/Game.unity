@@ -177,6 +177,16 @@ PrefabInstance:
       propertyPath: _audioPlayer
       value: 
       objectReference: {fileID: 1986188327}
+    - target: {fileID: 4466301982513214005, guid: 2fa7d2efed50044cb994d7c54e963c36,
+        type: 3}
+      propertyPath: SecondsToLoadCar
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4466301982513214005, guid: 2fa7d2efed50044cb994d7c54e963c36,
+        type: 3}
+      propertyPath: DriveSpeed
+      value: 1400
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fa7d2efed50044cb994d7c54e963c36, type: 3}
 --- !u!1 &806563561 stripped
@@ -304,7 +314,7 @@ PrefabInstance:
     - target: {fileID: 3984867041970400682, guid: 2608c7f0c2bb7cb45987a5e57d494d28,
         type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 3984867041970400682, guid: 2608c7f0c2bb7cb45987a5e57d494d28,
         type: 3}
@@ -657,11 +667,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3696106668546345696, guid: ec388aaa988c025489670ae451f7c597,
-        type: 3}
-      propertyPath: m_Name
-      value: GameAudio
-      objectReference: {fileID: 0}
     - target: {fileID: 7793987642135822529, guid: ec388aaa988c025489670ae451f7c597,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -716,6 +721,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3696106668546345696, guid: ec388aaa988c025489670ae451f7c597,
+        type: 3}
+      propertyPath: m_Name
+      value: GameAudio
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec388aaa988c025489670ae451f7c597, type: 3}
@@ -1116,7 +1126,7 @@ PrefabInstance:
     - target: {fileID: 1521604565512081845, guid: 65c8da5e65637c24686f6aef6ce23fd8,
         type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1521604565512081845, guid: 65c8da5e65637c24686f6aef6ce23fd8,
         type: 3}
