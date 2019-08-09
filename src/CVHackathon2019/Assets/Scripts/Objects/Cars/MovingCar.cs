@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using Assets.Scripts;
-using System.Collections;
 
 public class MovingCar : MonoBehaviour
 {
@@ -8,6 +7,7 @@ public class MovingCar : MonoBehaviour
     public bool IsReturn = false;
     public float CarDriveSpeed = 137;
     public bool NeedsToBeReturned => IsReturn && !_isReturned;
+    public float SafeReturnX = 10f;
 
     public bool hasPassenger = false;
     private bool _isReturned = false;
@@ -19,6 +19,15 @@ public class MovingCar : MonoBehaviour
     void Start()
     {
         gameObject.GetComponent<SpriteRenderer>().sprite = carSprites.Random();
+    }
+
+    void Update()
+    {
+        if (IsReturn && !_isReturned && transform.position.x > SafeReturnX)
+        {
+            DestroyImmediate(GetComponent<Rigidbody2D>());
+            Destroy(gameObject);
+        }
     }
 
     public void Launch()
