@@ -3,38 +3,35 @@ using TMPro;
 
 public class MoneyScoreCalculators 
 {
-	public int score;
-
+	// Game Score
 	private int _gameScore => GameState.Current.GameScore;
 
-	// multipliers
-	// private int _difficulty = ...
+	// Multipliers
 	private int _level => GameState.Current.Level;
 	private int _numServed => GameState.Current.NumCustomersServed;
 	private int _stars => GameState.Current.StarRatings;
 
-	public int CarDeliveredCashValue = 1000;
+	public int CarValue = 200;
 
-	// Calculate Car value (WIP)
-	public int CalculateAddMoneyValue() {
-		var gameplayMultipliers = 1*_level;//*difficulty
-		var cashMultipliers = 1*CarDeliveredCashValue*_stars;
-		var multipliers = gameplayMultipliers*cashMultipliers;
+	// private functions
 
-		var newScore = 1*(1*multipliers);
+	private int CalculateAddMoneyValue() {
+		var gameplayX = 1*_level;
+		var cashX = 1*CarValue*_stars;
 
-		return newScore;
+		var money = gameplayX*cashX;
+		return money;
 	}
 
-	public int CalculateRemoveMoneyValue() {
-		var gameplayMultipliers = 1*_level;//*difficulty
-		var cashMultipliers = 1*CarDeliveredCashValue*1;
-		var multipliers = gameplayMultipliers*cashMultipliers;
+	private int CalculateRemoveMoneyValue() {
+		var gameplayX = 1*_level;
+		var cashX = 1*CarValue;
 
-		var newScore = 1*(1*multipliers);
-
-		return newScore;
+		var money = gameplayX*cashX;
+		return money;
 	}
+
+	// public functions
 
 	public void PlusMoneyCarDelivered() {
 		var carValue = CalculateAddMoneyValue();
@@ -48,7 +45,5 @@ public class MoneyScoreCalculators
 
 		GameState.Current.GameScore -= twoCarsValue;
 	}
-
-
 
 }
